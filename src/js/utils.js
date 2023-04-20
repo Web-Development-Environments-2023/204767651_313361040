@@ -2,6 +2,7 @@
 var users = {}
 var shotKey = ' '
 let timerCount = 120000;  //in seconds
+var logedInUser = null;
 users['p'] = {
     'username': 'p',
     'pass': 'p',
@@ -9,6 +10,7 @@ users['p'] = {
     'lastname': 'Test',
     'Email': 'test@gmail.com',
     'Birthdate': '01/01/2000',
+    'scoreboard': [],
 }
 
 
