@@ -1,57 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="shortcut icon" type="image/x-icon" href="https://static.wikia.nocookie.net/steamtradingcards/images/f/f7/Chicken_Invaders_4_Emoticon_ci4chicken.png/revision/latest?cb=20141024180141">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="https://static.wikia.nocookie.net/steamtradingcards/images/f/f7/Chicken_Invaders_4_Emoticon_ci4chicken.png/revision/latest?cb=20141024180141"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="./Resource/logo.jpg">
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chicken Invaders</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/modal.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/settings.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/game.css" />
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+
 </head>
 <body>
-    <div id="container_header">
-        <header>
-            <center>
-                <img class="logo" src="https://images.launchbox-app.com/15f9cf98-65fb-4e3c-b94b-09e427b5f837.png" width="35%" height="35%">
-            </center>
-        </header>
-    </div>
 
-    <div id="menu">
-        <li><a href="#welcome" class="menuObject">Welcome</a></li>
-        <li><a href="#register" class="menuObject">Register</a></li>
-        <li><a href="#login" class="menuObject">Login</a></li>
-        <li><a href="#about" class="menuObject">About</a></li>
+  <div id="menu"  align="center">
+    <li><a  class="menu_Object" onclick="pageSwitch('#welcome')">Welcome</a></li>
+    <li><a  class="menu_Object" onclick="pageSwitch('#register')">Register</a></li>
+    <li><a  id="logoutBtn" class="menu_Object" onclick="replaceLogIn()" style="display:none;">Logout</a></li>
+    <li><a  id="loginBtn" class="menu_Object" onclick="pageSwitch('#login')">Login</a></li>
+    <li><a  class="menu_Object" id="aboutBtn">About</a></li>
+  </div>
+
+
+
+
+    <section id="welcome" align="center">
+        <img class="logo" src="https://images.launchbox-app.com/15f9cf98-65fb-4e3c-b94b-09e427b5f837.png" width="35%" height="35%">
+    <br/>
+    <br/>
+
+    <button class="btn1" onclick="pageSwitch('#login')"><font size="6">Log In</font></btn>
+    <button class="btn1" onclick="pageSwitch('#register')"><font size="6">Register</font></btn>
+    </section>
+
+
+
+    <section id="register" align="center">
+      <h2>Sign Up</h2>
+      <form id="registration" onsubmit="return registrationValidation()">
+          <label for="name">User Name:</label>
+          <input class="inputRequest" type="text" placeholder="User Name" id="registrationFormUserName" required/>
+
+          <label for="password">Password:</label>
+          <input class="inputRequest" type="password" placeholder="Password" id="registrationFormPassword" required/>
+
+          <label for="confirm">Confirm Password:</label>
+          <input class="inputRequest" type="password" placeholder="Confirm Password" id="registrationFormConfirmPassword" required/>
+
+          <label for="name">First Name:</label>
+          <input class="inputRequest" type="text" placeholder="First Name" id="registrationFormFirstName" required/>
+
+          <label for="name">Last Name:</label>
+          <input class="inputRequest" type="text" placeholder="Last Name" id="registrationFormLastName" required/>
+
+          <label for="email">Email:</label>
+          <input class="inputRequest" type="email" placeholder="Email" id="registrationFormEmail" required/>
+
+          <label for="Birthdate">Birth Date:</label>
+          <input class="inputRequest" type="date" placeholder="Birth Date" id="registerFormBirthDate" name="registerFormBirthDate" value="1920-01-01" min="1900-01-01" max="2023-01-10" required/>
+          </br>
+          </br>
+          <button type=submit class="btn1" data-text="color">REGISTER</button>
+          <p id="error" class="error"></p>
+
+      </form>
+    </section>
+
+
+    <section id="login" align="center" hidden>
+      <form id="login-section-form">
+        <div id="login-form-title">
+          <h2>Log In</h2>
+        </div>
+        <div id="login-fill-in-div">
+          <input class="inputRequest" type="text" placeholder="User Name" id="loginFormUserName" required/>
+          </br>
+          <input class="inputRequest" type="password" placeholder="Password" id="loginFormPassword" required/>
+        </div>
+        <div id="submitLogInButtonD">
+          <button type="submit" class="btn1" data-text="color" onclick="return loggedInUser()">LOGIN</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- About -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h3>About</h3>
+    </div>
+    <div class="modal-body">
+
+      <p style = "font-size:28px; text-decoration: underline">Creators: Ido Lourie and Elad Shmulevich</p>
+
+      <p>This Web game called Space Invaders</p>
+      <p>The challenges we had are:</p>
+       <p style="text-indent: 40px;"> 1.Switching between screens and and hide the others.</p>
+       <p style="text-indent: 40px;">2. Validate the sing up form and check all fields</p>
+    </div>
+  </div>
+
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    
+    // Get the button that opens the modal
+    var btn = document.getElementById("aboutBtn");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    //when the user press esc key the modal will close
+    document.addEventListener('keyup', function (event){
+			if (event.keyCode == 27){
+				document.getElementById("myModal").style.display = "none";
+			}
+		})
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
+</div>
+
+<!-- <section id="Configuration" align="center">
+  <h1>Settings</h1>
+
+</section> -->
+
+
+<section id="Configuration" align="center" >
+  <form id="configuration-form">
+      <h2>
+        Settings
+      </h2>
+  </br>
+    <div id="preference-form-div">
+      <div class="preference-form">
+        <div id="configuration-key">
+          <h1>
+            Click the button below and then press keyboard's key for the shot:
+          </h1>
+          <div class="keySet">
+            <br/>
+            <p id="key-shot" class="key-btn" onclick="return setKey()">Space</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="preference-form">
+      </br>
+        <h1>
+          Time in seconds:
+        </h1>
+  
+          <div>
+            <span id="rangeValue">350</span>
+          </br>
+            <Input id="rangeVal" class="range" type="range" name "" value="350" min="120" max="1000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input>
+        </div>
+        <script type="text/javascript">
+            function rangeSlide(value) {
+                document.getElementById('rangeValue').innerHTML = value;
+            }
+        </script>
+
+
+
+      </div>
+
+      <div class="preference-form">
+      </br>
+        <h1>
+          Enemy Space Ship Colors :
+        </h1>
+        <div id="preference-form-colors">
+          <br/>
+          <div class="colorsSet">
+            <label>1st Row:</label>
+
+            <input type="color" id="row1" value="#e90000" class="clickable"/>
+          </div>
+          <div class="colorsSet">
+            <label>2nd Row:</label>
+            <input type="color" id="row2" value="#ccf000" class="clickable"/>
+          </div>
+          <div class="colorsSet">
+            <label>3rd Row:</label>
+            <input type="color" id="row3" value="#00f721" class="clickable"/>
+          </div>
+          <div class="colorsSet">
+            <label>4thRow:</label>
+            <input type="color" id="row4" value="#4c00ff" class="clickable"/>
+          </div>
+        </div>
       </div>
 
 
+      <div class="submitButtonD">
+      </br>
+        <button type="submit" class="btn1" value="SET" onclick="return setSettings()">START GAME</button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<div id="game">
+      <div id="score">
+      <span>Score:</span> <span id="scoreEl">0</span>
+    </div>
+    <div id="timer">
+      <span>Time:</span> <span id="stopwatchEl">00:00</span>
+    </div>
+    <div id="life-bar">
+        <img src="./Resource/images/heart3.png" alt="Life bar">
+    </div>
+  <canvas id="canvasGame"></canvas>
+  
+
+
+</div>
 
 
 
 
 
-      <footer class="footer">
-        <div class="container">
-         <div class="row">
-           <div class="footer-col">
-             <h4>About us</h4>
 
-           </div>
-           <div class="footer-col">
 
-             <h4>follow us</h4>
-             <div class="social-links">
-               <a href="#"><i class="fab fa-facebook-f"></i></a>
-               <a href="#"><i class="fab fa-twitter"></i></a>
-             </div>
-           </div>
-         </div>
-        </div>
-     </footer>
+
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
+    <script type="text/javascript" src="src/js/utils.js"></script>
+    <script type="text/javascript" src="src/js/register.js"></script>
+    <script type="text/javascript" src="src/js/login.js"></script>
+    <script type="text/javascript" src="src/js/game.js"></script>
 
 </body>
 </html>
