@@ -53,7 +53,7 @@ function registrationValidation() {
         return false;
     }
     console.log("Registration successful!");
-    const newUser = {'username': userName.value, 'pass': password.value, 'firstname': firstName.value, 'lastname': lastName.value, 'Email': email.value, 'Birthdate': birthdate.value};
+    const newUser = {'username': userName.value, 'pass': password.value, 'firstname': firstName.value, 'lastname': lastName.value, 'Email': email.value, 'Birthdate': birthdate.value, 'scoreboard': []};
     registerUser(newUser, userName.value);
     swal("Success!", "Registration successful!", "success");
     let oldForm = $("#registration");
