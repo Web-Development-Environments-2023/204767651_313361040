@@ -11,6 +11,13 @@ var particles;
 const screenWidth = window.innerWidth;
 const screenHeight = window.innerHeight;
 
+var backgroundSound = new Audio("./Resource/sounds/backgroundMusic.mp3");
+var hitSound = new Audio("./Resource/sounds/blaster.mp3");
+hitSound.volume = 0.4;
+var explosionSound = new Audio("./Resource/sounds/explosion.mp3");
+var gameOverSound = new Audio("./Resource/sounds/loss.mp3");
+var winSound = new Audio("./Resource/sounds/winning.mp3");
+
 
 
 // LETS
@@ -87,6 +94,7 @@ function setupGame(){
     lifeBar.src = liveBar_StringImage;
     const scale = canvas.width * 0.0006;
     c.drawImage(lifeBar, 0, 0, lifeBar.width, lifeBar.height, 10, 10, lifeBar.width*scale, lifeBar.height*scale);
+    backgroundSound.play();
     animate();
 }
 catch(err){
@@ -478,6 +486,8 @@ function updateTime(countTime, isStopwatch) {
             }
             else{
                 // Add a message at the center of the screen
+                stopSound(backgroundSound);
+                winSound.play();
                 var t = "Winner!";
                 c.font = "100px Berlin Sans FB";
                 c.fillStylec = 'orange';
@@ -588,6 +598,7 @@ function animate(){
             player.opacity > 0.9)){
                 
                 game.lives --
+                explosionSound.play();
 
                 setTimeout(() => {
                     InvaderProjectiles.splice(index, 1)
@@ -611,6 +622,8 @@ function animate(){
 
                         setTimeout(() => { 
                             game.active = false
+                            stopSound(backgroundSound);
+                            gameOverSound.play();
                             // Add a message at the center of the screen
                             var t = "You Lost!";
                             c.font = "100px Berlin Sans FB";
@@ -678,6 +691,7 @@ function animate(){
 
                                 //remove invader & projectile
                             if(invaderFound && projectileFound){
+                                hitSound.play()
                                 score += invader.prize
                                 createParticles({
                                     object: invader, 
@@ -702,6 +716,9 @@ function animate(){
                                     grids.splice (gridIndex, 1)
                                     setTimeout(() => { 
                                         game.active = false;
+                                        stopSound(backgroundSound);
+                                        winSound.play();
+
                                         //text
                                         var t = "Champion!";
                                         c.font = "125px Berlin Sans FB";

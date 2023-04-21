@@ -134,3 +134,18 @@ function changePlayer(path, img){
     }
     playerImagePath = path;
 }
+
+function loadSound(soundPath, loop=false) {
+			// create an Audio object and set its source file
+			let audio = new Audio(soundPath);
+            if(loop){
+                audio.loop = true;
+            }
+            return audio;
+		}
+
+function stopSound(sound) {
+            sound.pause();
+            sound.currentTime = 0;
+        }
+
