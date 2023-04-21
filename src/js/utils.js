@@ -3,6 +3,10 @@ var users = {}
 var shotKey = ' '
 let timerCount = 120000;  //in seconds
 var logedInUser = null;
+var isUserLoggedIn = false;
+var playerImagePath = "./Resource/images/spaceship1.png";
+
+
 users['p'] = {
     'username': 'p',
     'pass': 'p',
@@ -21,7 +25,7 @@ $(document).ready(function() {
 
 function welcome() {
     hide();
-    resizeGameBoard();
+    // resizeGameBoard();
     $("#welcome").show();
 }
 
@@ -105,3 +109,28 @@ function resizeGameBoard(){
     gameContainer.style.left = `${screenWidth / 2 - gameBoardWidth / 2}px`;
 }
 
+
+function changePlayer(path, img){
+    switch (img) {
+        case 1:
+            document.querySelector('#spaceShip1').style.boxShadow = '0 0 20px rgba(0, 174, 255, 0.5)';
+            document.querySelector('#spaceShip2').style.boxShadow = 'none';
+            document.querySelector('#spaceShip3').style.boxShadow = 'none';
+
+
+            break;
+        case 2:
+            document.querySelector('#spaceShip1').style.boxShadow = 'none';
+            document.querySelector('#spaceShip2').style.boxShadow = '0 0 20px rgba(0, 174, 255, 0.5)';
+            document.querySelector('#spaceShip3').style.boxShadow = 'none';
+
+            break;
+        case 3:
+            document.querySelector('#spaceShip1').style.boxShadow = 'none';
+            document.querySelector('#spaceShip2').style.boxShadow = 'none';
+            document.querySelector('#spaceShip3').style.boxShadow = '0 0 20px rgba(0, 174, 255, 0.5)';
+            break;
+
+    }
+    playerImagePath = path;
+}

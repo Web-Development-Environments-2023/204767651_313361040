@@ -15,8 +15,9 @@ function loggedInUser() {
     var password = document.getElementById("loginFormPassword").value;
     if (validateUser(userName, password)) {
         var user = users[userName]['firstname'];
-        swal("Welcome back " + user +"!", "You are now logged in", "success");
+        swal("Welcome " + user +"!", "You are now logged in", "success");
         loggedInUser = users[userName];
+        isUserLoggedIn = true;
         pageSwitch("#Configuration");
         replaceLogOut();
         return false;
@@ -33,6 +34,8 @@ function loggedInUser() {
 function replaceLogOut(){
     const logoutBtn = $("#logoutBtn");
     const loginBtn = $("#loginBtn");
+    isUserLoggedIn = false;
+    loggedInUser = null;
     logoutBtn.show();
     loginBtn.hide();
 }

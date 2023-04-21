@@ -177,9 +177,9 @@
         </h1>
   
           <div>
-            <span id="rangeValue">350</span>
+            <span id="rangeValue">120</span>
           </br>
-            <Input id="rangeVal" class="range" type="range" name "" value="350" min="120" max="1000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input>
+            <Input id="rangeVal" class="range" type="range" name "" value="120" min="120" max="1000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input>
         </div>
         <script type="text/javascript">
             function rangeSlide(value) {
@@ -194,11 +194,22 @@
       <div class="preference-form">
       </br>
         <h1>
-          Enemy Space Ship Colors :
+          Choose your player:
         </h1>
-        <div id="preference-form-colors">
+        <style>
+          #preference-form-player img {
+            margin-right: 5%;
+          }
+        </style>
+
+        <div id="preference-form-player">
           <br/>
-          <div class="colorsSet">
+          <tr>
+            <td width=33%><img src="Resource/images/spaceship1.png" alt="spaceship1" id="spaceShip1"   height="100" style="box-shadow: 0 0 20px rgba(0, 174, 255, 0.5);" onclick="changePlayer('./Resource/images/spaceship1.png', 1)"></td>
+            <td width=33%><img src="Resource/images/spaceship2.png" alt="starShip2" id="spaceShip2"  height="100" onclick="changePlayer('./Resource/images/spaceship2.png', 2)"></td>
+            <td width=33%><img src="Resource/images/spaceship3.png" alt="starShip3" id="spaceShip3" height="100" onclick="changePlayer('./Resource/images/spaceship3.png', 3)"></td>
+        </tr>
+          <!-- <div class="colorsSet">
             <label>1st Row:</label>
 
             <input type="color" id="row1" value="#e90000" class="clickable"/>
@@ -214,7 +225,7 @@
           <div class="colorsSet">
             <label>4thRow:</label>
             <input type="color" id="row4" value="#4c00ff" class="clickable"/>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -229,25 +240,12 @@
 
 <div id="game">
   <div id="gameContainer">
-      <div id="score">
-      <span>Score:</span> <span id="scoreEl">0</span>
-    </div>
-    <div id="timer">
-      <span>Time:</span> <span id="stopwatchEl">00:00</span>
-    </div>
 
   <canvas id="canvasGame"></canvas>
   
 </div>
 
 </div>
-
-
-
-
-
-
-
 
 
 

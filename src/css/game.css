@@ -1,17 +1,15 @@
-/* body {
-    margin: 0;
-  } */
+
 .gameContainer {
-    position: relative;
+    /* position: fixed; */
     margin-top: 2%;
 
- 
   }
 
   canvas {
     display: block;
-    position: absolute;
-    margin-top: 2%;
+    position: fixed;
+
+
   }
   #score {
     position: fixed;

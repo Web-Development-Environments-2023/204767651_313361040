@@ -61,24 +61,24 @@ const keys = {
 function setupGame(){
     try{
     const canvasWidth = screenWidth;
-    const canvasHeight = screenHeight*0.8;
+    const canvasHeight = screenHeight*0.85;
 
     canvas = document.querySelector('canvas');
     c = canvas.getContext('2d');
+    c.globalCompositeOperation='destination-over';
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
-    canvas.style.top = `${screenHeight / 2 - canvasHeight / 2}px`;
+    canvas.style.top = `7%`;
     canvas.style.left = `${screenWidth / 2 - canvasWidth / 2}px`;
+
+
+
 
     player = new Player();
     projectiles = [];
     grids = [];
     InvaderProjectiles = [];
     particles = [];
-
-
-    scoreEl = document.querySelector('#scoreEl');
-    stopwatchEl = document.getElementById('stopwatchEl');
     addGameListeners();
     backgroundAnimation();
     startTime = Date.now();
@@ -111,7 +111,7 @@ class Player{
 
 
         const image = new Image()
-        image.src = './Resource/images/space-ship-removebg-preview.png'
+        image.src = playerImagePath;
         image.onload = () =>{
             const scale = canvas.height*0.00018;
             this.image= image
@@ -121,7 +121,7 @@ class Player{
 
 
             this.position = {
-                x: canvas.width / 2 - this.width / 2,
+                x: getRandomInt(canvas.width- player.width),
                 y: canvas.height - this.height - 20
             }
         }
@@ -227,8 +227,8 @@ class InvaderProjectile{
         this.position = position
         this.velocity = velocity
         
-        this.width = 3
-        this.height = 10
+        this.width = 4
+        this.height = 12
     }
 
     draw(){
@@ -268,7 +268,7 @@ class Invader{
             this.height = image.height * scale
             this.position = {
                 x: position.x,
-                y: position.y
+                y: position.y+30
             }
         }
         this.prize = prize
@@ -396,10 +396,6 @@ class Grid{
 
 
 
-
-
-
-
 //to make grid appear randomized
 //let randomIntervalGrid = Math.floor((Math.random() * 500) + 500)
 
@@ -455,7 +451,15 @@ function updateTime(countTime, isStopwatch) {
         const minutes = Math.floor(elapsedTime / 60000);
         const seconds = Math.floor((elapsedTime % 60000) / 1000);
         const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        stopwatchEl.innerHTML = timeString;
+        
+        //draw time
+        c.font = "25px Berlin Sans FB";
+        c.fillStyle = 'white';
+        c.fontWeight = 'bold';
+        // c.fillText("Time: " + timeString, 0, canvas.height-20);
+        c.fillText("Time: " + timeString, canvas.width-130, 25);
+
+
 
         if (!isStopwatch && elapsedTime <= 0) {
             console.log('Time is up!');
@@ -463,32 +467,24 @@ function updateTime(countTime, isStopwatch) {
             //text
             if(score < 100){
                 // Add a message at the center of the screen
-                const message = document.createElement('div');
-                var gameElement = document.getElementById("gameContainer");
-                message.innerText = 'You can do better!';
-                message.style.position = 'absolute';
-                message.style.top = '30%';
-                message.style.left = '50%';
-                message.style.transform = 'translate(-50%, -50%)';
-                message.style.fontSize = '55px';
-                message.style.color = '#CD7F32';
-                message.style.fontWeight = 'bold';
-                message.style.fontFamily = "Berlin Sans FB";
-                // document.body.appendChild(message);
-                gameElement.appendChild(message);
+                var t = "You can do better!";
+                c.font = "55px Berlin Sans FB";
+                c.fillStylec = 'white';
+                c.fontWeight = 'bold';
+                context.lineWidth = 7;
+                context.strokeText(t, x, y);
+                context.lineWidth = 1;
+                c.fillText(t, canvas.width/2, canvas.height/2);
             }
             else{
                 // Add a message at the center of the screen
-                const message = document.createElement('div');
-                var gameElement = document.getElementById("gameContainer");
-                message.innerText = 'Winner!';
-                message.style.position = 'absolute';
-                message.style.top = '30%';
-                message.style.left = '50%';
-                message.style.transform = 'translate(-50%, -50%)';
-                message.style.fontSize = '55px';
-                message.style.color = 'silver';
-                gameElement.appendChild(message);
+                var t = "Winner!";
+                c.font = "100px Berlin Sans FB";
+                c.fillStylec = 'orange';
+                c.fontWeight = 'bold';
+                c.textAlign = "center";
+                c.textBaseline = "middle";
+                c.fillText(t, canvas.width/2, canvas.height/2);
 
             }
 
@@ -556,8 +552,19 @@ function animate(){
     let liveBar_StringImage = "./Resource/images/heart"+String(game.lives)+".png";
     lifeBar.src = liveBar_StringImage;
     lifeBar.style.zIndex = 1;
-    const scale = canvas.width * 0.0006;
-    c.drawImage(lifeBar, 0, 0, lifeBar.width, lifeBar.height, 10, 10, lifeBar.width*scale, lifeBar.height*scale)
+    const scale = canvas.width * 0.00045;
+    c.drawImage(lifeBar, 0, 0, lifeBar.width, lifeBar.height, 0, 0, lifeBar.width*scale, lifeBar.height*scale)
+
+
+    //draw score
+    c.font = "30px Berlin Sans FB";
+    c.fillStyle = 'white';
+    c.fontWeight = 'bold';
+    c.fillText("Score: " + score, 3, canvas.height-20);
+
+
+
+    
 
 
 
@@ -590,7 +597,8 @@ function animate(){
                         console.log(game.lives)
                         setTimeout(() => {
                             player.opacity = 1
-                            player.position.x = canvas.width / 2 - player.width / 2
+                            // player.position.x = canvas.width / 2 - player.width / 2
+                            player.position.x = getRandomInt(canvas.width- player.width);
                             player.position.y = canvas.height - player.height - 20
                             },1000)
                     }
@@ -604,16 +612,13 @@ function animate(){
                         setTimeout(() => { 
                             game.active = false
                             // Add a message at the center of the screen
-                            const message = document.createElement('div');
-                            var gameElement = document.getElementById("gameContainer");
-                            message.innerText = 'You Lost';
-                            message.style.position = 'absolute';
-                            message.style.top = '30%';
-                            message.style.left = '50%';
-                            message.style.transform = 'translate(-50%, -50%)';
-                            message.style.fontSize = '80px';
-                            message.style.color = 'white';
-                            gameElement.appendChild(message);
+                            var t = "You Lost!";
+                            c.font = "100px Berlin Sans FB";
+                            c.fillStylec = 'white';
+                            c.fontWeight = 'bold';
+                            c.textAlign = "center";
+		                    c.textBaseline = "middle";
+                            c.fillText(t, canvas.width/2, canvas.height/2);
                             },1500) 
                     }
                 }, 0)
@@ -674,7 +679,6 @@ function animate(){
                                 //remove invader & projectile
                             if(invaderFound && projectileFound){
                                 score += invader.prize
-                                scoreEl.innerHTML = score
                                 createParticles({
                                     object: invader, 
                                     color: 'green',
@@ -699,17 +703,14 @@ function animate(){
                                     setTimeout(() => { 
                                         game.active = false;
                                         //text
-                                        // Add a message at the center of the screen
-                                        const message = document.createElement('div');
-                                        var gameElement = document.getElementById("gameContainer");
-                                        message.innerText = 'Champion!';
-                                        message.style.position = 'absolute';
-                                        message.style.top = '30%';
-                                        message.style.left = '50%';
-                                        message.style.transform = 'translate(-50%, -50%)';
-                                        message.style.fontSize = '60px';
-                                        message.style.color = 'gold';
-                                        gameElement.appendChild(message);
+                                        var t = "Champion!";
+                                        c.font = "125px Berlin Sans FB";
+                                        c.fillStyle = 'orange';
+                                        c.fontWeight = 'bold';
+                                        c.textAlign = "center";
+                                        c.textBaseline = "middle";
+                                        c.fillText(t, canvas.width/2, canvas.height/2);
+
                                     },1000)   
                                 }
                             }
@@ -847,4 +848,8 @@ addEventListener('keyup', ({key}) => {
     }   
 })
 }
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
 
