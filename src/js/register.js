@@ -1,13 +1,5 @@
 
 
-// function validateUser(userName, password) {
-//     if (users[userName] !== undefined) {
-//         if (users[userName]['password'] === password) {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
 
 
 
