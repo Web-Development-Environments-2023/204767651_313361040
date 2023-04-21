@@ -199,12 +199,11 @@ input {
   font-family: "Berlin Sans FB";
 }
 
-canvas {
-  /* border: 1px solid black; */
+/* canvas {
   position: absolute;
   margin-top: 2%;
   border-radius: 10px;
-}
+} */
 
 
 

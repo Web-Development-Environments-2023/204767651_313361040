@@ -21,6 +21,7 @@ $(document).ready(function() {
 
 function welcome() {
     hide();
+    resizeGameBoard();
     $("#welcome").show();
 }
 
@@ -90,6 +91,17 @@ function setSettings(){
     pageSwitch("#game");
     setupGame();
     return false;
+}
 
+function resizeGameBoard(){
+    const gameBoard = document.getElementById("gameContainer");
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    const gameBoardWidth = screenWidth * 0.8;
+    const gameBoardHeight = screenHeight*0.8;
+
+    gameContainer.style.top = `${screenHeight / 2 - gameBoardHeight / 2}px`;
+    gameContainer.style.left = `${screenWidth / 2 - gameBoardWidth / 2}px`;
 }
 

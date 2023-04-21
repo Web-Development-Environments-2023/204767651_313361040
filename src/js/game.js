@@ -8,6 +8,10 @@ var projectiles;
 var grids;
 var InvaderProjectiles;
 var particles;
+const screenWidth = window.innerWidth;
+const screenHeight = window.innerHeight;
+
+
 
 // LETS
 let frames = 0
@@ -20,11 +24,9 @@ let game = {
 }
 let score = 0
 let lastShotTime = 0;
-let startTime = Date.now();
-// let timerCount = 50000
+let startTime;
 let isStopwatch = false
 
-//let startTime = null;
 let relateTime = null;
 let velocityChangeRate = 2
 let velocityIncreaseCountProj = 0;
@@ -57,10 +59,8 @@ const keys = {
 
 
 function setupGame(){
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-
-    const canvasWidth = screenWidth * 0.8;
+    try{
+    const canvasWidth = screenWidth;
     const canvasHeight = screenHeight*0.8;
 
     canvas = document.querySelector('canvas');
@@ -79,11 +79,19 @@ function setupGame(){
 
     scoreEl = document.querySelector('#scoreEl');
     stopwatchEl = document.getElementById('stopwatchEl');
-    lifeBar = document.querySelector('#life-bar img');
     addGameListeners();
     backgroundAnimation();
+    startTime = Date.now();
+    lifeBar = new Image();
+    let liveBar_StringImage = "./Resource/images/heart3.png";
+    lifeBar.src = liveBar_StringImage;
+    const scale = canvas.width * 0.0006;
+    c.drawImage(lifeBar, 0, 0, lifeBar.width, lifeBar.height, 10, 10, lifeBar.width*scale, lifeBar.height*scale);
     animate();
-
+}
+catch(err){
+    console.log(err);
+}
 
 
 }
@@ -105,10 +113,13 @@ class Player{
         const image = new Image()
         image.src = './Resource/images/space-ship-removebg-preview.png'
         image.onload = () =>{
-            const scale = 0.12
+            const scale = canvas.height*0.00018;
             this.image= image
             this.width = image.width * scale
             this.height = image.height * scale
+
+
+
             this.position = {
                 x: canvas.width / 2 - this.width / 2,
                 y: canvas.height - this.height - 20
@@ -246,7 +257,12 @@ class Invader{
         let stringImage = "./Resource/images/enemy"+String(line + 1)+".png"
         image.src = stringImage
         image.onload = () =>{
-            const scale = 0.15
+            // const scale = 0.15
+            // this.image= image
+            // this.width = image.width * scale
+            // this.height = image.height * scale
+
+            const scale = canvas.height*0.00020;
             this.image= image
             this.width = image.width * scale
             this.height = image.height * scale
@@ -327,15 +343,22 @@ class Grid{
         const cols = 5
         const rows = 4
 
-        this.width = cols * 80
+        var invaderWidth = 500;
+        const scale = canvas.height*0.00020;
+        const scaleWidth = invaderWidth*scale;
+
+        const scaleHeight = invaderWidth*scale;
+        
+        this.width = cols * scaleWidth;
         
 
         for(let x =0; x < cols ; x++ ){
             for(let y = 0; y < rows; y++){
                 this.invaders.push(new Invader(
                     {position: {
-                        x: x * 80,
-                        y: y * 70},
+                        x: x * scaleWidth,
+                        y: y * scaleHeight},
+
                     prize: 25 - y * 5,
                     line: y
                     }))}}
@@ -441,6 +464,7 @@ function updateTime(countTime, isStopwatch) {
             if(score < 100){
                 // Add a message at the center of the screen
                 const message = document.createElement('div');
+                var gameElement = document.getElementById("gameContainer");
                 message.innerText = 'You can do better!';
                 message.style.position = 'absolute';
                 message.style.top = '30%';
@@ -450,11 +474,13 @@ function updateTime(countTime, isStopwatch) {
                 message.style.color = '#CD7F32';
                 message.style.fontWeight = 'bold';
                 message.style.fontFamily = "Berlin Sans FB";
-                document.body.appendChild(message);
+                // document.body.appendChild(message);
+                gameElement.appendChild(message);
             }
             else{
                 // Add a message at the center of the screen
                 const message = document.createElement('div');
+                var gameElement = document.getElementById("gameContainer");
                 message.innerText = 'Winner!';
                 message.style.position = 'absolute';
                 message.style.top = '30%';
@@ -462,7 +488,7 @@ function updateTime(countTime, isStopwatch) {
                 message.style.transform = 'translate(-50%, -50%)';
                 message.style.fontSize = '55px';
                 message.style.color = 'silver';
-                document.body.appendChild(message);
+                gameElement.appendChild(message);
 
             }
 
@@ -525,6 +551,17 @@ function animate(){
             particle.update() 
         }
     })
+
+    //draw hearts
+    let liveBar_StringImage = "./Resource/images/heart"+String(game.lives)+".png";
+    lifeBar.src = liveBar_StringImage;
+    lifeBar.style.zIndex = 1;
+    const scale = canvas.width * 0.0006;
+    c.drawImage(lifeBar, 0, 0, lifeBar.width, lifeBar.height, 10, 10, lifeBar.width*scale, lifeBar.height*scale)
+
+
+
+
     InvaderProjectiles.forEach((InvaderProjectile, index) => {
         if(InvaderProjectile.position.y + InvaderProjectile.height >= canvas.height){
             setTimeout(() => {
@@ -543,12 +580,7 @@ function animate(){
             InvaderProjectile.position.x + InvaderProjectile.width >= player.position.x &&
             player.opacity > 0.9)){
                 
-
                 game.lives --
-                    // Update life bar image
-                let liveBar_StringImage = "./Resource/images/heart"+String(game.lives)+".png"
-                console.log(liveBar_StringImage)
-                lifeBar.src = liveBar_StringImage
 
                 setTimeout(() => {
                     InvaderProjectiles.splice(index, 1)
@@ -573,6 +605,7 @@ function animate(){
                             game.active = false
                             // Add a message at the center of the screen
                             const message = document.createElement('div');
+                            var gameElement = document.getElementById("gameContainer");
                             message.innerText = 'You Lost';
                             message.style.position = 'absolute';
                             message.style.top = '30%';
@@ -580,7 +613,7 @@ function animate(){
                             message.style.transform = 'translate(-50%, -50%)';
                             message.style.fontSize = '80px';
                             message.style.color = 'white';
-                            document.body.appendChild(message);
+                            gameElement.appendChild(message);
                             },1500) 
                     }
                 }, 0)
@@ -668,6 +701,7 @@ function animate(){
                                         //text
                                         // Add a message at the center of the screen
                                         const message = document.createElement('div');
+                                        var gameElement = document.getElementById("gameContainer");
                                         message.innerText = 'Champion!';
                                         message.style.position = 'absolute';
                                         message.style.top = '30%';
@@ -675,7 +709,7 @@ function animate(){
                                         message.style.transform = 'translate(-50%, -50%)';
                                         message.style.fontSize = '60px';
                                         message.style.color = 'gold';
-                                        document.body.appendChild(message);
+                                        gameElement.appendChild(message);
                                     },1000)   
                                 }
                             }
