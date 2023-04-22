@@ -21,6 +21,10 @@ function loggedInUser() {
         logUser = users[userName]['username'];
         console.log(logUser);
         isUserLoggedIn = true;
+
+        const tdElement = document.querySelector("td.fullLineTd");
+        tdElement.innerHTML = "<b>" +logUser + " all time score" +"</b>";
+
         pageSwitch("#Configuration");
         replaceLogOut();
         return false;

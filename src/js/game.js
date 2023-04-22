@@ -514,6 +514,8 @@ function updateTime(countTime, isStopwatch) {
             game.pause = true;
             game.active = false;
 
+            showLeaderBoard(logUser);
+
         }
 
         if (seconds % 5 === 0 && seconds !== 0 && gridSpeedIncreaseCount < 4 && Date.now() - lastVelocityIncreaseTime >= 5000) {
@@ -642,6 +644,8 @@ function animate(){
 		                    c.textBaseline = "middle";
                             c.fillText(t, canvas.width/2, canvas.height/2);
                             },1500) 
+
+                        showLeaderBoard(logUser);
                     }
                 }, 0)
 
@@ -725,9 +729,11 @@ function animate(){
                                     grids.splice (gridIndex, 1)
                                     setTimeout(() => { 
                                         updateScoreBoard(logUser);
-                                        game.active = false;
+                                        
                                         stopSound(backgroundSound);
                                         soundGo("./Resource/sounds/winning.mp3");
+                                        game.active = false;
+                                        showLeaderBoard(logUser);
 
                                         //text
                                         var t = "Champion!";
@@ -890,5 +896,18 @@ function updateScoreBoard(user){
     users[user].scoreboard.sort((a, b) => {
         return b.score - a.score;
       });
-    console.log(users[user].scoreboard);
+
+}
+
+function showLeaderBoard(user){
+    updateLeaderBoardTable(users[user].scoreboard, users[user].username);
+
+    setTimeout(function() {
+        pageSwitch('#leaderboard');
+        
+      }, 3000); // 3000 milliseconds = 3 seconds
+
+
+
+
 }

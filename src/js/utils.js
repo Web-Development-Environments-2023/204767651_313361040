@@ -9,7 +9,7 @@ var mute =true;
 
 users['p'] = {
     'username': 'p',
-    'pass': 'p',
+    'pass': 'testuser',
     'firstname': 'P',
     'lastname': 'Test',
     'Email': 'test@gmail.com',
@@ -46,6 +46,9 @@ const pageSwitch = (tab) => {
 	$('#login').hide();
     $('#Configuration').hide();
     $('#game').hide();
+    $('#leaderboard').hide();
+
+    
 
 
   };
@@ -150,6 +153,32 @@ function playSound(sound, resource=true) {
         mute = false;
     }
 }
+
+
+function updateLeaderBoardTable(scores, username){
+    // Clear the existing score table rows
+    const tbody = document.querySelector("#leaderboard-table tbody");
+
+    tbody.innerHTML = "";
+    
+    // Add a row for each score
+    scores.forEach((score, index) => {
+      const tr = document.createElement("tr");
+      const rankTd = document.createElement("td");
+      const nameTd = document.createElement("td");
+      const scoreTd = document.createElement("td");
+      
+      rankTd.innerText = index + 1;
+      nameTd.innerText = score.time;
+      scoreTd.innerText = score.score;
+      tr.appendChild(rankTd);
+      tr.appendChild(nameTd);
+      tr.appendChild(scoreTd);
+      tbody.appendChild(tr);
+    });
+  }
+
+
 
 
 function backtoConfig() {

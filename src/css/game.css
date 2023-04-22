@@ -13,7 +13,7 @@ canvas {
 
 #muteBtn
 {
- z-index: 1;
+ z-index: 5;
  position: fixed;
  right: 0;
  bottom: 6%;
@@ -27,10 +27,10 @@ canvas {
 
 #playBtn
 {
- z-index: 1;
+ z-index: 5;
  position: fixed;
- right: 3%;
- bottom: 6.5%;
+ right: 3.2%;
+ bottom: 6.56%;
 }
 
 #playBtn:hover

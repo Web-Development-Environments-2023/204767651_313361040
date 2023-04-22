@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" style="background-image: url('./Resource/image.png');">
 <head>
-    <!-- <link rel="shortcut icon" type="image/x-icon" href="https://static.wikia.nocookie.net/steamtradingcards/images/f/f7/Chicken_Invaders_4_Emoticon_ci4chicken.png/revision/latest?cb=20141024180141"> -->
     <link rel="shortcut icon" type="image/x-icon" href="./Resource/logo.jpg">
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicken Invaders</title>
+    <title>Space Invaders</title>
     <link rel="stylesheet" type="text/css" href="src/css/style.css" />
     <link rel="stylesheet" type="text/css" href="src/css/modal.css" />
     <link rel="stylesheet" type="text/css" href="src/css/settings.css" />
     <link rel="stylesheet" type="text/css" href="src/css/game.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/leaderboard.css" />
+
+
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
@@ -206,7 +208,7 @@
           <div>
             <span id="rangeValue">120</span>
           </br>
-            <Input id="rangeVal" class="range" type="range" value="120" min="10" max="1000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input>
+            <Input id="rangeVal" class="range" type="range" value="120" min="120" max="1000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input>
         </div>
         <script type="text/javascript">
             function rangeSlide(value) {
@@ -262,6 +264,38 @@
 </div>
 
 </div>
+
+
+
+
+<section id="leaderboard" align="center" >
+  <form id="leaderboard-content">
+      <h2>
+        Score board
+      </h2>
+  </br>
+        <table id="leaderboard-table" align="center">
+          
+          <thead>
+            <tr> <td class="fullLineTd" colspan="3"><b></b></td></tr>
+          <tr>
+            <td><b>Rank</b></td>
+            <td><b>Date</b></td>
+            <td><b>Score</b></td>
+          </tr>
+        </thead>
+      
+        <tbody>
+      
+        </tbody>
+      
+        </table>
+
+  </form>
+</section>
+
+
+
 
     <!-- Footer-->
   <footer id="footer">
