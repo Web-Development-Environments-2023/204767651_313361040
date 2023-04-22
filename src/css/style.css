@@ -95,7 +95,6 @@ section {
 .btn1
 {
   background-image: linear-gradient(180deg,#ffffff, rgba(0, 204, 255, 0.83));
-  background-image: linear-gradient(180deg,#ffffff, rgba(0, 0, 0, 0.83));
 	color: rgb(199, 199, 199);
 	-webkit-text-stroke: 1px rgb(8, 8, 8);
   text-shadow: 0 0 5px #ffffff, 0 0 5px #fff, 0 0 5px #ffffff, 0 0 5px #ffffff;

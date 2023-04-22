@@ -6,6 +6,7 @@
   align-items: center;
   position: relative;
 
+
 }
 
 #leaderboard-content {
@@ -13,9 +14,7 @@
   height: 100%;
   justify-content: center;
   align-items: center;
-  /* background-color: rgb(178, 185, 185, 0.4); */
-  background-image: linear-gradient(180deg,#ffffff, rgba(0, 166, 255, 0.83));
-
+  background-image: linear-gradient(180deg,#ffffff, rgba(0, 166, 255, 0.45));
   border-radius: 10px;
   margin: auto;
   padding: 20px;
@@ -30,8 +29,13 @@
   font-style: revert;
   font-family: "Berlin Sans FB";
 	background-color: rgba(53, 53, 53, 0.6);
-  -webkit-text-stroke: 0.5px rgb(8, 8, 8);
+  -webkit-text-stroke: 0.75px rgb(8, 8, 8);
 	color:#fff;
 	border-radius: 4px;
   width: auto;
+
+  margin: auto;
+  padding: 20px;
+
 }
+

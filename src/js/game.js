@@ -16,7 +16,7 @@ const screenHeight = window.innerHeight;
 var canvasWidth = screenWidth;
 var canvasHeight = screenHeight*0.88;
 //
-var frames
+var frames;
 //
 var backgroundSound = new Audio("./Resource/sounds/backgroundMusic.mp3");
 //
@@ -30,12 +30,12 @@ var game = {
     pause : false
 }
 //score
-var score = 0
+var score = 0;
 //shoots
 var playerLastShotTime;
 //clock
 var startTime;
-var isStopwatch = false
+var isStopwatch = false;
 var relateTime = null;
 //velocoty changing
 var velocityChangeRate = 2
@@ -45,9 +45,10 @@ var projectileSpeed = 5; // adjust this value to change the speed of the project
 var velocityIncreaseInterval = 5000; // increase velocity every 5 seconds
 var gridSpeedIncreaseCount = 0;
 var lastVelocityIncreaseTime = 0;
-var gridStartVelocity = 4
+var gridStartVelocity = 4;
 //pressed keys- event listener
-var keys
+var keys;
+var backgroundAnimationVelocity = 0.7;
 
 
 
@@ -137,10 +138,12 @@ function resetGame(){
 }
 
 function setupGame(){
+    setTimeout(() => {
     resetGame()
     playSound(backgroundSound)
     animate();
-    console.log(grids[0].velocity)
+    // console.log(grids[0].velocity)
+    }, 200);
 }
 
 
@@ -220,7 +223,7 @@ class Projectile{
         this.position = position
         this.velocity = velocity
         
-        this.radius = 5
+        this.radius = 6
     }
 
     draw(){
@@ -427,7 +430,8 @@ for(let i = 0; i < 100 ; i++){
         },
         velocity: {
            x: 0,
-           y: 0.7
+        //    y: 0.7
+        y: backgroundAnimationVelocity
         },
         radius: Math.random() * 4,
         color: 'white'
@@ -483,8 +487,7 @@ function updateTime(countTime, isStopwatch) {
             
             console.log('Time is up!');
             updateScoreBoard(logUser);
-            // game.pause = true;
-            // game.active = false;
+
             //text
             if(score < 100){
                 // Add a message at the center of the screen
@@ -521,7 +524,8 @@ function updateTime(countTime, isStopwatch) {
         if (seconds % 5 === 0 && seconds !== 0 && gridSpeedIncreaseCount < 4 && Date.now() - lastVelocityIncreaseTime >= 5000) {
             grids.forEach(grid => {
                 if (grid.velocity.x >= 0) {
-                    grid.velocity.x += velocityChangeRate;  
+                    grid.velocity.x += velocityChangeRate;
+
                 } else if (grid.velocity.x < 0) {
                     grid.velocity.x -= velocityChangeRate;
                 }
@@ -550,6 +554,8 @@ function animate(){
     }
 
     //requestAnimationFrame(animate)  
+
+
 
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)

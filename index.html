@@ -56,8 +56,8 @@
 
     <!-- Register Section-->
     <section id="register" align="center">
-      <h2>Sign Up</h2>
       <form id="registration" onsubmit="return registrationValidation()">
+        <h2>Sign Up</h2>
           <label for="name">User Name:</label>
           <input class="inputRequest" type="text" placeholder="User Name" id="registrationFormUserName" required/>
 
@@ -80,7 +80,7 @@
           <input class="inputRequest" type="date" placeholder="Birth Date" id="registerFormBirthDate" name="registerFormBirthDate" value="1920-01-01" min="1900-01-01" max="2023-01-10" required/>
           </br>
           </br>
-          <button type=submit class="btn1" data-text="color">REGISTER</button>
+          <button type=submit class="btn1" data-text="color"><font size="5">REGISTER</font></button>
           <p id="error" class="error"></p>
 
       </form>
@@ -97,8 +97,10 @@
           </br>
           <input class="inputRequest" type="password" placeholder="Password" id="loginFormPassword" required/>
         </div>
+        <br>
+
         <div id="submitLogInButtonD">
-          <button type="submit" class="btn1" data-text="color" onclick="return loggedInUser()">LOGIN</button>
+          <button type="submit" class="btn1" data-text="color" onclick="return loggedInUser()"><font size="5">LOGIN</font></button>
         </div>
       </form>
     </section>
@@ -273,7 +275,7 @@
       <h2>
         Score board
       </h2>
-  </br>
+
         <table id="leaderboard-table" align="center">
           
           <thead>
