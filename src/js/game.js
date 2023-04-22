@@ -13,11 +13,7 @@ const screenWidth = window.innerWidth;
 const screenHeight = window.innerHeight;
 
 var backgroundSound = new Audio("./Resource/sounds/backgroundMusic.mp3");
-var hitSound = new Audio("./Resource/sounds/blaster.mp3");
-hitSound.volume = 0.4;
-var explosionSound = new Audio("./Resource/sounds/explosion.mp3");
-var gameOverSound = new Audio("./Resource/sounds/loss.mp3");
-var winSound = new Audio("./Resource/sounds/winning.mp3");
+
 
 
 
@@ -264,16 +260,10 @@ class Invader{
            x: 0,
            y: 0 
         }
-        //this.line = line
-
         const image = new Image()
         let stringImage = "./Resource/images/enemy"+String(line + 1)+".png"
         image.src = stringImage
         image.onload = () =>{
-            // const scale = 0.15
-            // this.image= image
-            // this.width = image.width * scale
-            // this.height = image.height * scale
 
             const scale = canvas.height*0.00020;
             this.image= image
@@ -298,8 +288,7 @@ class Invader{
             ) 
         }
 
-        
-
+    
     update({velocity}){
         if(this.image){
             this.draw()
@@ -348,10 +337,6 @@ class Grid{
 
         this.invaders = []
 
-
-        //for random number of invaders
-        //const cols = Math.floor(Math.random() * 13)+ 1
-        //const rows = Math.floor(Math.random() * 5)+ 1
    
         const cols = 5
         const rows = 4
@@ -379,8 +364,6 @@ class Grid{
 
     update(){
 
-        //console.log(velocityIncreaseCountGrid)
-
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
 
@@ -388,29 +371,11 @@ class Grid{
 
         if (this.position.x +this.width >= canvas.width || this.position.x <= 0){
             this.velocity.x = -(this.velocity.x)
-            //to make them go one line down
-            //this.velocity.y = 30
         } 
-
-
-
-        // if(now - relateTime >= velocityIncreaseInterval && velocityIncreaseCountGrid < 4){
-        // //if(Date.now() - relateTime >= velocityIncreaseInterval && velocityIncreaseCountGrid < 4){
-        //     console.log("increase speed Gird: ")
-        //     if(this.velocity.x >= 0){this.velocity.x += velocityChangeRate}
-        //     else if(this.velocity.x < 0){this.velocity.x -= velocityChangeRate}
-            
-        //     relateTime = Date.now()
-        //     velocityIncreaseCountGrid ++
-        //     console.log(this.velocity.x)
-        // }
     }
 }
 
 
-
-//to make grid appear randomized
-//let randomIntervalGrid = Math.floor((Math.random() * 500) + 500)
 
 
 function backgroundAnimation(){
@@ -451,8 +416,6 @@ function createParticles({object, color, fades}){
 
 
 
-
-
 function updateTime(countTime, isStopwatch) {
     if (startTime !== null && game.active) {
         let elapsedTime = 0;
@@ -461,6 +424,8 @@ function updateTime(countTime, isStopwatch) {
         } else {
             elapsedTime = countTime - (Date.now() - startTime - 1000);
         }
+        elapsedTime = elapsedTime < 0 ? 0 : elapsedTime; // add this line to set elapsedTime to 0 if it's less than 0
+
         const minutes = Math.floor(elapsedTime / 60000);
         const seconds = Math.floor((elapsedTime % 60000) / 1000);
         const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
@@ -469,7 +434,6 @@ function updateTime(countTime, isStopwatch) {
         c.font = "25px Berlin Sans FB";
         c.fillStyle = 'white';
         c.fontWeight = 'bold';
-        // c.fillText("Time: " + timeString, 0, canvas.height-20);
         c.fillText("Time: " + timeString, canvas.width-130, 25);
 
 
@@ -480,19 +444,20 @@ function updateTime(countTime, isStopwatch) {
             //text
             if(score < 100){
                 // Add a message at the center of the screen
+                stopSound(backgroundSound);
+                soundGo("./Resource/sounds/doBetter.mp3");
                 var t = "You can do better!";
-                c.font = "55px Berlin Sans FB";
-                c.fillStylec = 'white';
+                c.font = "120px Berlin Sans FB";
+                c.textAlign = "center";
+                c.textBaseline = "middle";
+                c.fillStylec = 'orange';
                 c.fontWeight = 'bold';
-                context.lineWidth = 7;
-                context.strokeText(t, x, y);
-                context.lineWidth = 1;
                 c.fillText(t, canvas.width/2, canvas.height/2);
             }
             else{
                 // Add a message at the center of the screen
                 stopSound(backgroundSound);
-                winSound.play();
+                soundGo("./Resource/sounds/winning.mp3");
                 var t = "Winner!";
                 c.font = "100px Berlin Sans FB";
                 c.fillStylec = 'orange';
@@ -512,15 +477,12 @@ function updateTime(countTime, isStopwatch) {
                 } else if (grid.velocity.x < 0) {
                     grid.velocity.x -= velocityChangeRate;
                 }
-                // console.log("grid velo:" + grid.velocity.x)
             });
             gridSpeedIncreaseCount++;
             lastVelocityIncreaseTime = Date.now();
         }
     }
 }
-
-
 
 
 
@@ -605,7 +567,7 @@ function animate(){
             player.opacity > 0.9)){
                 
                 game.lives --
-                explosionSound.play();
+                soundGo("./Resource/sounds/explosion.mp3");
 
                 setTimeout(() => {
                     InvaderProjectiles.splice(index, 1)
@@ -615,7 +577,6 @@ function animate(){
                         console.log(game.lives)
                         setTimeout(() => {
                             player.opacity = 1
-                            // player.position.x = canvas.width / 2 - player.width / 2
                             player.position.x = randomPlayerPosition;
                             player.position.y = canvas.height - player.height - 20
                             },1000)
@@ -630,8 +591,7 @@ function animate(){
                         setTimeout(() => { 
                             game.active = false
                             stopSound(backgroundSound);
-                            gameOverSound.play();
-                            // Add a message at the center of the screen
+                            soundGo("./Resource/sounds/loss.mp3");
                             var t = "You Lost!";
                             c.font = "100px Berlin Sans FB";
                             c.fillStylec = 'white';
@@ -698,7 +658,7 @@ function animate(){
 
                                 //remove invader & projectile
                             if(invaderFound && projectileFound){
-                                hitSound.play()
+                                soundGo("./Resource/sounds/blaster.mp3");
                                 score += invader.prize
                                 createParticles({
                                     object: invader, 
@@ -724,7 +684,7 @@ function animate(){
                                     setTimeout(() => { 
                                         game.active = false;
                                         stopSound(backgroundSound);
-                                        winSound.play();
+                                        soundGo("./Resource/sounds/winning.mp3");
 
                                         //text
                                         var t = "Champion!";
@@ -876,4 +836,10 @@ addEventListener('keyup', ({key}) => {
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
+
+function soundGo(soundPath){
+    var sound = new Audio(soundPath);
+    sound.volume = 0.2;
+    sound.play();
+}
 
