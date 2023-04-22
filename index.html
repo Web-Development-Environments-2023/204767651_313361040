@@ -34,12 +34,21 @@
 
 
     <section id="welcome" align="center">
+      <p><h2>Ido Lourie - 204767651&emsp;Elad Shmulevich - 313361040</h2></p>
+      <br/>
+      <br/>
         <img class="logo" src="https://images.launchbox-app.com/15f9cf98-65fb-4e3c-b94b-09e427b5f837.png" width="35%" height="35%">
     <br/>
     <br/>
+    <br/>
+    <br/>
+    
 
-    <button class="btn1" onclick="pageSwitch('#login')"><font size="6">Log In</font></btn>
-    <button class="btn1" onclick="pageSwitch('#register')"><font size="6">Register</font></btn>
+    
+
+    <button class="btn1" onclick="pageSwitch('#login')"><font size="6">Log In</font></button>
+    &emsp;&emsp;&emsp;
+    <button class="btn1" onclick="pageSwitch('#register')"><font size="6">Register</font></button>
     </section>
 
 
@@ -99,16 +108,34 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h3>About</h3>
+      <h3>About Space Invaders Game</h3>
     </div>
     <div class="modal-body">
 
       <p style = "font-size:28px; text-decoration: underline">Creators: Ido Lourie and Elad Shmulevich</p>
 
-      <p>This Web game called Space Invaders</p>
+
+
+      <p>This Web game called Space Invaders, your goal is to kill all bad spaceships!</p>
+      <p>Game Keys:<br><br>
+        &emsp;&emsp;Up: use the ⬆ Key<br><br>
+        &emsp;&emsp;Down: use the ⬇ Key<br><br>
+        &emsp;&emsp;Left: use the ⬅ Key<br><br>
+        &emsp;&emsp;Right: use the ➡ Key<br><br>
+        &emsp;&emsp;Shot: Space Bar by deafult, you can choose your own Key!
+      </p>
+    </br>
+      <p>We Add the following functionality:</p>
+      <p style="text-indent: 40px;"> 1.The option to choose the player spaceship.</p>
+      <p style="text-indent: 40px;">2. The option to choose the shotkey for the game</p>
+      <p style="text-indent: 40px;">3. The option to choose time for the game by time slider</p>
+      <p style="text-indent: 40px;">3. Game Timer That indicates how much time left</p>
+    </br>
       <p>The challenges we had are:</p>
-       <p style="text-indent: 40px;"> 1.Switching between screens and and hide the others.</p>
+       <p style="text-indent: 40px;"> 1.Switching between screens and hide the others.</p>
        <p style="text-indent: 40px;">2. Validate the sing up form and check all fields</p>
+       <p style="text-indent: 40px;">3. Reset The Game</p>
+
     </div>
   </div>
 
@@ -148,10 +175,7 @@
     </script>
 </div>
 
-<!-- <section id="Configuration" align="center">
-  <h1>Settings</h1>
 
-</section> -->
 
 
 <section id="Configuration" align="center" >
@@ -182,7 +206,7 @@
           <div>
             <span id="rangeValue">120</span>
           </br>
-            <Input id="rangeVal" class="range" type="range" name "" value="120" min="120" max="1000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input>
+            <Input id="rangeVal" class="range" type="range" value="10" min="10" max="1000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input>
         </div>
         <script type="text/javascript">
             function rangeSlide(value) {
@@ -259,10 +283,6 @@
       </div>
       </div>
   </footer>
-
-
-
-
 
 
 
