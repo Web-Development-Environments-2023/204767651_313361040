@@ -139,7 +139,6 @@ function resetGame(){
 function setupGame(){
     resetGame()
     playSound(backgroundSound)
-    //requestAnimationFrame(animate)
     animate();
     console.log(grids[0].velocity)
 }
@@ -542,13 +541,8 @@ function animate(){
         velocityIncreaseCountProj ++
     }
 
-    //to do!!!!!!!
-    if (game.pause){
-       console.log("game paused") 
-    }
+    //requestAnimationFrame(animate)  
 
-
-    requestAnimationFrame(animate)  
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
@@ -806,6 +800,8 @@ function animate(){
     //setInterval(updateStopwatch, 1000);
     setInterval(updateTime(timerCount,isStopwatch), 1000);
 
+    if(!game.pause){requestAnimationFrame(animate) }
+
 }
 
 
@@ -836,11 +832,6 @@ addEventListener('keydown', ({key}) => {
             break
         case shotKey:
             keys.space.pressed = true
-            break
-        case 'p':
-            console.log('p in')
-            game.pause = (!game.pause)
-            console.log(game.pause)
             break
     }   
 })

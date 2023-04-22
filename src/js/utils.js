@@ -35,6 +35,8 @@ function welcome() {
 const pageSwitch = (tab) => {
 	hide();
 	$(tab).show();
+    game.pause = true
+    stopSound(null,false)
   };
 
 
@@ -168,10 +170,6 @@ function playSound(sound, resource=true) {
 
 
 function backtoConfig() {
-
         // to do if game on
-        stopSound(null,false)
         pageSwitch("#Configuration");
-
-
 }
