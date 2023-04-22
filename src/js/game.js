@@ -1,106 +1,147 @@
 var canvas;
 var c;
+//
 var scoreEl;
 var stopwatchEl;
 var lifeBar;
+//
 var player;
 var projectiles;
 var grids;
 var InvaderProjectiles;
 var particles;
-var randomPlayerPosition;
+//
 const screenWidth = window.innerWidth;
 const screenHeight = window.innerHeight;
-
+var canvasWidth = screenWidth;
+var canvasHeight = screenHeight*0.88;
+//
+var frames
+//
 var backgroundSound = new Audio("./Resource/sounds/backgroundMusic.mp3");
-
-
-
-
-// LETS
-let frames = 0
-let randomIntervalGrid = 99999999999999999999999999999
-let game = {
+//
+var randomPlayerPosition;
+var randomIntervalGrid;
+//Game
+var game = {
     over: false,
     active:true,
     lives: 3,
     pause : false
 }
-let score = 0
-let lastShotTime = 0;
-let startTime;
-let isStopwatch = false
+//score
+var score = 0
+//shoots
+var playerLastShotTime;
+//clock
+var startTime;
+var isStopwatch = false
+var relateTime = null;
+//velocoty changing
+var velocityChangeRate = 2
+var velocityIncreaseCountProj = 0;
+var velocityIncreaseCountGrid = 0;
+var projectileSpeed = 5; // adjust this value to change the speed of the projectiles
+var velocityIncreaseInterval = 5000; // increase velocity every 5 seconds
+var gridSpeedIncreaseCount = 0;
+var lastVelocityIncreaseTime = 0;
+var gridStartVelocity = 4
+//pressed keys- event listener
+var keys
 
-let relateTime = null;
-let velocityChangeRate = 2
-let velocityIncreaseCountProj = 0;
-let velocityIncreaseCountGrid = 0;
-let projectileSpeed = 5; // adjust this value to change the speed of the projectiles
-const velocityIncreaseInterval = 5000; // increase velocity every 5 seconds
-
-let gridSpeedIncreaseCount = 0;
-let lastVelocityIncreaseTime = 0;
 
 
-const keys = {
-    arrowDown: {
-        pressed: false
-    },
-    arrowUp: {
-        pressed: false
-    },
-    arrowLeft: {
-        pressed: false
-    },
-    arrowRight: {
-        pressed: false
-    },
-    space: {
-        pressed: false
+
+
+
+function resetGame(){
+    // LETS
+    frames = 0
+    randomIntervalGrid = 99999999999999999999999999999
+    game = {
+    over: false,
+    active:true,
+    lives: 3,
+    pause : false
     }
+    score = 0
+    playerLastShotTime = 0;
+    startTime;
+    isStopwatch = false
+
+    relateTime = null;
+    velocityChangeRate = 2
+    velocityIncreaseCountProj = 0;
+    velocityIncreaseCountGrid = 0;
+    projectileSpeed = 5; // adjust this value to change the speed of the projectiles
+    velocityIncreaseInterval = 5000; // increase velocity every 5 seconds
+
+    gridSpeedIncreaseCount = 0;
+    lastVelocityIncreaseTime = 0;
+
+
+    keys = {
+        arrowDown: {
+            pressed: false
+        },
+        arrowUp: {
+            pressed: false
+        },
+        arrowLeft: {
+            pressed: false
+        },
+        arrowRight: {
+            pressed: false
+        },
+        space: {
+            pressed: false
+        }
+    }
+    
+    canvasWidth = screenWidth;
+    canvasHeight = screenHeight*0.88;
+
+    try{
+
+        canvas = document.querySelector('canvas');
+        c = canvas.getContext('2d');
+        c.globalCompositeOperation='destination-over';
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+        canvas.style.top = `7%`;
+        canvas.style.left = `${screenWidth / 2 - canvasWidth / 2}px`;
+    
+    
+    
+    
+        player = new Player();
+        projectiles = [];
+        grids = [];
+        InvaderProjectiles = [];
+        particles = [];
+        addGameListeners();
+        backgroundAnimation();
+        startTime = Date.now();
+        lifeBar = new Image();
+        let liveBar_StringImage = "./Resource/images/heart3.png";
+        lifeBar.src = liveBar_StringImage;
+        const scale = canvas.width * 0.0006;
+        c.drawImage(lifeBar, 0, 0, lifeBar.width, lifeBar.height, 10, 10, lifeBar.width*scale, lifeBar.height*scale);
+        //playSound(backgroundSound)
+        //backgroundSound.play();
+        }
+        catch(err){
+            console.log(err);
+        }
+
 }
-
-
 
 function setupGame(){
-    try{
-    const canvasWidth = screenWidth;
-    const canvasHeight = screenHeight*0.88;
-    // const canvasHeight = screenHeight;
-
-    canvas = document.querySelector('canvas');
-    c = canvas.getContext('2d');
-    c.globalCompositeOperation='destination-over';
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
-    canvas.style.top = `7%`;
-    
-    canvas.style.left = `${screenWidth / 2 - canvasWidth / 2}px`;
-
-
-
-
-    player = new Player();
-    projectiles = [];
-    grids = [];
-    InvaderProjectiles = [];
-    particles = [];
-    addGameListeners();
-    backgroundAnimation();
-    startTime = Date.now();
-    lifeBar = new Image();
-    let liveBar_StringImage = "./Resource/images/heart3.png";
-    lifeBar.src = liveBar_StringImage;
-    const scale = canvas.width * 0.0006;
-    c.drawImage(lifeBar, 0, 0, lifeBar.width, lifeBar.height, 10, 10, lifeBar.width*scale, lifeBar.height*scale);
-    backgroundSound.play();
+    resetGame()
+    playSound(backgroundSound)
+    //requestAnimationFrame(animate)
     animate();
-}
-catch(err){
-    console.log(err);
-}
-
-
+    console.log(grids[0].velocity)
 }
 
 
@@ -331,7 +372,7 @@ class Grid{
         }
         
         this.velocity = {
-            x: 4,
+            x: gridStartVelocity,
             y: 0
         }
 
@@ -740,7 +781,7 @@ function animate(){
 
     //player shoots
 
-    if (keys.space.pressed && Date.now() - lastShotTime > 300 && game.lives > 0 && player.opacity > 0.9){
+    if (keys.space.pressed && Date.now() - playerLastShotTime > 300 && game.lives > 0 && player.opacity > 0.9){
         projectiles.push(new Projectile({
             position:{
                 x: player.position.x + player.width / 2,
@@ -751,7 +792,7 @@ function animate(){
                 y: -4
             }
         }) )
-        lastShotTime = Date.now();
+        playerLastShotTime = Date.now();
     }
 
     // spawn grids

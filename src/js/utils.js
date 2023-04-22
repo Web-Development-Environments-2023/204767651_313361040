@@ -5,7 +5,7 @@ let timerCount = 120000;  //in seconds
 var logUser;
 var isUserLoggedIn = false;
 var playerImagePath = "./Resource/images/spaceship1.png";
-var mute =false;
+var mute =true;
 
 users['p'] = {
     'username': 'p',
@@ -170,6 +170,7 @@ function playSound(sound, resource=true) {
 function backtoConfig() {
 
         // to do if game on
+        stopSound(null,false)
         pageSwitch("#Configuration");
 
 
