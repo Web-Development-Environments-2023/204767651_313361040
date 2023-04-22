@@ -18,7 +18,8 @@ function loggedInUser() {
     if (validateUser(userName, password)) {
         var user = users[userName]['firstname'];
         swal("Welcome " + user +"!", "You are now logged in", "success");
-        logUser = users[userName];
+        logUser = users[userName]['username'];
+        console.log(logUser);
         isUserLoggedIn = true;
         pageSwitch("#Configuration");
         replaceLogOut();

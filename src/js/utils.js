@@ -48,23 +48,6 @@ const pageSwitch = (tab) => {
     $('#game').hide();
 
 
-
-	// $('#settings').hide();
-	// $('#game-section').hide();
-	// if(gameOn){
-    //     if(!song.paused){
-    //         song.pause();
-    //         song.currentTime = 0;
-
-    //     }
-    //     Stop();
-	// 	gameOn = false;
-    //     ghostsLocs={};
-    //     ghostsCounter=0;
-    //     lives=5;
-    //     maxScore=0;
-    //     score=0;
-	// }
   };
 
 
@@ -172,4 +155,15 @@ function playSound(sound, resource=true) {
 function backtoConfig() {
         // to do if game on
         pageSwitch("#Configuration");
+}
+
+
+//for getting the datetime of the game
+Date.prototype.today = function () { 
+    return ((this.getDate() < 10)?"0":"") + this.getDate() +"/"+(((this.getMonth()+1) < 10)?"0":"") + (this.getMonth()+1) +"/"+ this.getFullYear();
+}
+
+// For the time now
+Date.prototype.timeNow = function () {
+     return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes() +":"+ ((this.getSeconds() < 10)?"0":"") + this.getSeconds();
 }

@@ -20,7 +20,7 @@
 
 </head>
 <body>
-
+  <!-- Menu NavBar-->
   <div id="menu"  align="center">
     <li><a  id="welcomeBtn" class="menu_Object" onclick="pageSwitch('#welcome')">Welcome</a></li>
     <li><a  id="playButton" class="menu_Object" onclick="backtoConfig()" style="display:none;">Play</a></li>
@@ -32,7 +32,7 @@
 
 
 
-
+    <!-- Welcome Section-->
     <section id="welcome" align="center">
       <p><h2>Ido Lourie - 204767651&emsp;Elad Shmulevich - 313361040</h2></p>
       <br/>
@@ -52,7 +52,7 @@
     </section>
 
 
-
+    <!-- Register Section-->
     <section id="register" align="center">
       <h2>Sign Up</h2>
       <form id="registration" onsubmit="return registrationValidation()">
@@ -84,7 +84,7 @@
       </form>
     </section>
 
-
+    <!-- Login Section-->
     <section id="login" align="center" hidden>
       <form id="login-section-form">
         <div id="login-form-title">
@@ -101,7 +101,7 @@
       </form>
     </section>
 
-    <!-- About -->
+    <!-- About Section-->
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
@@ -177,7 +177,7 @@
 
 
 
-
+    <!-- Configuration Section-->
 <section id="Configuration" align="center" >
   <form id="configuration-form">
       <h2>
@@ -250,6 +250,7 @@
   </form>
 </section>
 
+    <!-- Game Section-->
 <div id="game">
   <div id="gameContainer">
   <img id="muteBtn" alt="mute" src="./Resource/images/mute.png"  height="50px" onclick="stopSound(null, false)">
@@ -262,7 +263,7 @@
 
 </div>
 
-
+    <!-- Footer-->
   <footer id="footer">
 
 <div class="flex-container" align="center">

@@ -479,8 +479,12 @@ function updateTime(countTime, isStopwatch) {
 
 
         if (!isStopwatch && elapsedTime <= 0) {
+
+            
             console.log('Time is up!');
-            game.active = false;
+            updateScoreBoard(logUser);
+            // game.pause = true;
+            // game.active = false;
             //text
             if(score < 100){
                 // Add a message at the center of the screen
@@ -507,6 +511,8 @@ function updateTime(countTime, isStopwatch) {
                 c.fillText(t, canvas.width/2, canvas.height/2);
 
             }
+            game.pause = true;
+            game.active = false;
 
         }
 
@@ -620,6 +626,7 @@ function animate(){
                     //to make the game freeze after ending
                     if(game.lives <= 0){
                         console.log('you lose')
+                        updateScoreBoard(logUser);
                         console.log(game.lives)
                         player.opacity = 0.00
 
@@ -717,6 +724,7 @@ function animate(){
                                     //stop the game and champion message
                                     grids.splice (gridIndex, 1)
                                     setTimeout(() => { 
+                                        updateScoreBoard(logUser);
                                         game.active = false;
                                         stopSound(backgroundSound);
                                         soundGo("./Resource/sounds/winning.mp3");
@@ -875,3 +883,12 @@ function soundGo(soundPath){
     sound.play();
 }
 
+
+function updateScoreBoard(user){
+    var datetime = new Date().today() + " - " + new Date().timeNow();
+    users[user].scoreboard.push({ 'time': datetime, 'score': score});
+    users[user].scoreboard.sort((a, b) => {
+        return b.score - a.score;
+      });
+    console.log(users[user].scoreboard);
+}
