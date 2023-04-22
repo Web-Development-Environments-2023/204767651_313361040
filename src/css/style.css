@@ -1,6 +1,5 @@
 html
 {
-	/* background-image: url("/Resource/image.png"); */
   background-image: url(https://static.wikia.nocookie.net/steamtradingcards/images/f/f7/Chicken_Invaders_4_Background_Earth.jpg/revision/latest/scale-to-width-down/1000?cb=20141024180302);
 
 	background-position: center;
@@ -207,6 +206,7 @@ input {
 
 #footer
 {
+  left: 0;
   bottom: 0;
   position: fixed;
 	width: 100%;
@@ -251,6 +251,8 @@ a:hover {
 i {
   font-size: 24px;
 }
+
+
 
 
 

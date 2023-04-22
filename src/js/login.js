@@ -11,12 +11,14 @@ function validateUser(userName, password) {
 
 
 function loggedInUser() {
+
     var userName = document.getElementById("loginFormUserName").value;
     var password = document.getElementById("loginFormPassword").value;
+    if(!isUserLoggedIn){
     if (validateUser(userName, password)) {
         var user = users[userName]['firstname'];
         swal("Welcome " + user +"!", "You are now logged in", "success");
-        loggedInUser = users[userName];
+        logUser = users[userName];
         isUserLoggedIn = true;
         pageSwitch("#Configuration");
         replaceLogOut();
@@ -24,6 +26,11 @@ function loggedInUser() {
     }
     else {
         swal("Error", "Invalid username or password", "error");
+        return false;
+    }
+    }
+    else{
+        swal("Error", "User already logged in", "error");
         return false;
     }
 
@@ -34,8 +41,10 @@ function loggedInUser() {
 function replaceLogOut(){
     const logoutBtn = $("#logoutBtn");
     const loginBtn = $("#loginBtn");
-    isUserLoggedIn = false;
-    loggedInUser = null;
+    const playBtn = $("#playButton");
+    const welcomeBut = $("#welcomeBtn");
+    welcomeBut.hide();
+    playBtn.show();
     logoutBtn.show();
     loginBtn.hide();
 }
@@ -43,6 +52,12 @@ function replaceLogOut(){
 function replaceLogIn(){
     const logoutBtn = $("#logoutBtn");
     const loginBtn = $("#loginBtn");
+    const playBtn = $("#playButton");
+    const welcomeBut = $("#welcomeBtn");
+    playBtn.hide();
+    welcomeBut.show();
+    isUserLoggedIn = false;
+    logUser = null;
     logoutBtn.hide();
     loginBtn.show();
     pageSwitch("#welcome");

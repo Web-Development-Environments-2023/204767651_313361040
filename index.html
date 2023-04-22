@@ -22,7 +22,8 @@
 <body>
 
   <div id="menu"  align="center">
-    <li><a  class="menu_Object" onclick="pageSwitch('#welcome')">Welcome</a></li>
+    <li><a  id="welcomeBtn" class="menu_Object" onclick="pageSwitch('#welcome')">Welcome</a></li>
+    <li><a  id="playButton" class="menu_Object" onclick="backtoConfig()" style="display:none;">Play</a></li>
     <li><a  class="menu_Object" onclick="pageSwitch('#register')">Register</a></li>
     <li><a  id="logoutBtn" class="menu_Object" onclick="replaceLogIn()" style="display:none;">Logout</a></li>
     <li><a  id="loginBtn" class="menu_Object" onclick="pageSwitch('#login')">Login</a></li>
@@ -219,6 +220,7 @@
       </br>
     </br>
         <button type="submit" class="btn1" value="SET" onclick="return setSettings()">START GAME</button>
+
       </div>
     </div>
   </form>
@@ -226,8 +228,11 @@
 
 <div id="game">
   <div id="gameContainer">
+  <img id="muteBtn" alt="mute" src="./Resource/images/mute.png"  height="50px" onclick="stopSound(null, false)">
+  <img id="playBtn" alt="mute" src="./Resource/images/play.png"  height="43px" onclick="playSound(null,false)">
 
   <canvas id="canvasGame"></canvas>
+
   
 </div>
 

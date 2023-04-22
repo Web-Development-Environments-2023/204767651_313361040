@@ -2,10 +2,10 @@
 var users = {}
 var shotKey = ' '
 let timerCount = 120000;  //in seconds
-var logedInUser = null;
+var logUser;
 var isUserLoggedIn = false;
 var playerImagePath = "./Resource/images/spaceship1.png";
-
+var mute =false;
 
 users['p'] = {
     'username': 'p',
@@ -144,8 +144,33 @@ function loadSound(soundPath, loop=false) {
             return audio;
 		}
 
-function stopSound(sound) {
-            sound.pause();
-            sound.currentTime = 0;
+function stopSound(sound, resource=true) {
+    if(!resource){
+        sound = backgroundSound;
+    }
+
+    if(!mute){
+        mute = true;
+        sound.pause();
+        sound.currentTime = 0;
+    }
         }
 
+function playSound(sound, resource=true) {
+    if(!resource){
+        sound = backgroundSound;
+    }
+    if(mute){
+        sound.play();
+        mute = false;
+    }
+}
+
+
+function backtoConfig() {
+
+        // to do if game on
+        pageSwitch("#Configuration");
+
+
+}

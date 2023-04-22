@@ -35,45 +35,46 @@
 
 #Configuration
 {
-  padding-bottom: 10%;
+  margin-top: 5%;
+  padding-bottom: 5%;
+  
 }
 
 #configuration-form
 {
-        width: 30%;
-        height: 90%;
+        width: 35%;
+        height: 100%;
         justify-content: center;
         align-items: center;
         background-color: rgb(178, 185, 185, 0.4);
         border-radius: 10px;
-        /* margin-bottom: 10%; */
 }
 
 .key-btn{
-    margin: auto;
-    font-size: 1.2vw;
-    border-color: #0c9cd4;
-    border-style: solid;
-    background: #2b424b;
-    border-radius: 30px;
+  margin: auto;
+  font-size: 1.2vw;
+  border-color: #0c9cd4;
+  border-style: solid;
+  background: #2b424b;
+  border-radius: 30px;
 
-    width: 25%;
+  width: 25%;
 
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    cursor: pointer;
-    
-
-
-    color: rgb(199, 199, 199);
-    text-decoration: none;
-    font-weight: bold;
-    -webkit-text-stroke: 1px rgb(8, 8, 8);
-    font-style: revert;
-    font-family: "Berlin Sans FB";
-    text-shadow: 0 0 5px #ffffff, 0 0 5px #fff, 0 0 5px #ffffff, 0 0 5px #ffffff;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  cursor: pointer;
+  
 
 
-    text-shadow: 0 0 5px #4c00ff, 0 0 5px #fff, 0 0 5px #ffffff, 0 0 5px #ffffff;
+  color: rgb(199, 199, 199);
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-text-stroke: 1px rgb(8, 8, 8);
+  font-style: revert;
+  font-family: "Berlin Sans FB";
+  text-shadow: 0 0 5px #ffffff, 0 0 5px #fff, 0 0 5px #ffffff, 0 0 5px #ffffff;
+
+
+  text-shadow: 0 0 5px #4c00ff, 0 0 5px #fff, 0 0 5px #ffffff, 0 0 5px #ffffff;
 
 }

@@ -8,6 +8,7 @@ var projectiles;
 var grids;
 var InvaderProjectiles;
 var particles;
+var randomPlayerPosition;
 const screenWidth = window.innerWidth;
 const screenHeight = window.innerHeight;
 
@@ -68,7 +69,8 @@ const keys = {
 function setupGame(){
     try{
     const canvasWidth = screenWidth;
-    const canvasHeight = screenHeight*0.85;
+    const canvasHeight = screenHeight*0.88;
+    // const canvasHeight = screenHeight;
 
     canvas = document.querySelector('canvas');
     c = canvas.getContext('2d');
@@ -76,6 +78,7 @@ function setupGame(){
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
     canvas.style.top = `7%`;
+    
     canvas.style.left = `${screenWidth / 2 - canvasWidth / 2}px`;
 
 
@@ -117,7 +120,6 @@ class Player{
         this.rotation = 0
         this.opacity = 1
 
-
         const image = new Image()
         image.src = playerImagePath;
         image.onload = () =>{
@@ -126,10 +128,13 @@ class Player{
             this.width = image.width * scale
             this.height = image.height * scale
 
+            randomPlayerPosition = getRandomInt(canvas.width- this.width)
+
+
 
 
             this.position = {
-                x: getRandomInt(canvas.width- player.width),
+                x: randomPlayerPosition,
                 y: canvas.height - this.height - 20
             }
         }
@@ -539,7 +544,7 @@ function animate(){
        console.log("game paused") 
     }
 
-    
+
     requestAnimationFrame(animate)  
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
@@ -611,7 +616,7 @@ function animate(){
                         setTimeout(() => {
                             player.opacity = 1
                             // player.position.x = canvas.width / 2 - player.width / 2
-                            player.position.x = getRandomInt(canvas.width- player.width);
+                            player.position.x = randomPlayerPosition;
                             player.position.y = canvas.height - player.height - 20
                             },1000)
                     }
