@@ -3,7 +3,7 @@
 <h1 align='center'>
   Project 2 - Space Invaders
 </h1>
-<img src="https://images.launchbox-app.com/15f9cf98-65fb-4e3c-b94b-09e427b5f837.png" width="400px"><img/>
+<img src="https://images.launchbox-app.com/15f9cf98-65fb-4e3c-b94b-09e427b5f837.png" height ="400px"><img/>
 
 
 <p>This Web game called Space Invaders, your goal is to kill all bad spaceships!</p>
