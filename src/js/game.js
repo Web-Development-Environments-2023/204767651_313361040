@@ -507,7 +507,7 @@ function updateTime(countTime, isStopwatch) {
                 } else if (grid.velocity.x < 0) {
                     grid.velocity.x -= velocityChangeRate;
                 }
-                console.log("grid velo:" + grid.velocity.x)
+                // console.log("grid velo:" + grid.velocity.x)
             });
             gridSpeedIncreaseCount++;
             lastVelocityIncreaseTime = Date.now();
@@ -534,10 +534,12 @@ function animate(){
         velocityIncreaseCountProj ++
     }
 
-    
+    //to do!!!!!!!
     if (game.pause){
        console.log("game paused") 
     }
+
+    
     requestAnimationFrame(animate)  
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
