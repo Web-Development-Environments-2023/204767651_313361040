@@ -33,19 +33,20 @@
         width: 22%;
 }
 
+#Configuration
+{
+  padding-bottom: 10%;
+}
+
 #configuration-form
 {
-        width: 40%;
-        height: 100%;
-        /* margin: auto; */
-        padding-bottom: 10%;
-        /* display: flex; */
-        /* flex-direction: column; */
+        width: 30%;
+        height: 90%;
         justify-content: center;
         align-items: center;
         background-color: rgb(178, 185, 185, 0.4);
         border-radius: 10px;
-        margin-bottom: 10%;
+        /* margin-bottom: 10%; */
 }
 
 .key-btn{
