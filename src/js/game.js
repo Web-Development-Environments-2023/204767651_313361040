@@ -637,9 +637,10 @@ function animate(){
                         updateScoreBoard(logUser);
                         console.log(game.lives)
                         player.opacity = 0.00
+                        game.pause = true;
 
                         setTimeout(() => { 
-                            game.active = false
+                            game.active = false;
                             stopSound(backgroundSound);
                             soundGo("./Resource/sounds/loss.mp3");
                             var t = "You Lost!";
@@ -739,6 +740,7 @@ function animate(){
                                         stopSound(backgroundSound);
                                         soundGo("./Resource/sounds/winning.mp3");
                                         game.active = false;
+                                        game.pause = true;
                                         showLeaderBoard(logUser);
 
                                         //text
@@ -891,7 +893,7 @@ function getRandomInt(max) {
 
 function soundGo(soundPath){
     var sound = new Audio(soundPath);
-    sound.volume = 0.2;
+    sound.volume = 0.6;
     sound.play();
 }
 
