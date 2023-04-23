@@ -25,11 +25,11 @@
 	position: relative;
 	border: 2px soid rgba(0, 0, 0, 0);
 	border-color: black;
-	font-size: 3vh;
+	font-size: 3.5vh;
   font-style: revert;
   font-family: "Berlin Sans FB";
 	background-color: rgba(53, 53, 53, 0.6);
-  -webkit-text-stroke: 0.75px rgb(8, 8, 8);
+  -webkit-text-stroke: 0.5px rgb(8, 8, 8);
 	color:#fff;
 	border-radius: 4px;
   width: auto;
