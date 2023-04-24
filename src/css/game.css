@@ -11,30 +11,22 @@ canvas {
 
   }
 
-#muteBtn
+
+.soundBtn
 {
  z-index: 5;
  position: fixed;
- right: 0;
+ right: 0.35%;
  bottom: 6%;
+ box-shadow: 0 0 20px rgb(255, 255, 255,0.5);
+ border-radius: 100px;
+ transition: linear 0.3s;
 }
 
-#muteBtn:hover
+.soundBtn:hover
 {
   cursor: pointer;
+  box-shadow: 0 0 20px rgba(0, 166, 255, 0.8);
 
-}
-
-#playBtn
-{
- z-index: 5;
- position: fixed;
- right: 3.2%;
- bottom: 6.56%;
-}
-
-#playBtn:hover
-{
-  cursor: pointer;
 }
 

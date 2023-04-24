@@ -11,14 +11,16 @@ var grids;
 var InvaderProjectiles;
 var particles;
 //
-const screenWidth = window.innerWidth;
-const screenHeight = window.innerHeight;
+var screenWidth = window.innerWidth;
+var screenHeight = window.innerHeight;
 var canvasWidth = screenWidth;
 var canvasHeight = screenHeight*0.88;
 //
 var frames;
 //
 var backgroundSound = new Audio("./Resource/sounds/backgroundMusic.mp3");
+backgroundSound.loop = true;
+
 //
 var randomPlayerPosition;
 var randomIntervalGrid;
@@ -98,6 +100,8 @@ function resetGame(){
             pressed: false
         }
     }
+    screenWidth = window.innerWidth;
+    screenHeight = window.innerHeight;
     
     canvasWidth = screenWidth;
     canvasHeight = screenHeight*0.88;
@@ -111,6 +115,8 @@ function resetGame(){
         canvas.height = canvasHeight;
         canvas.style.top = `7%`;
         canvas.style.left = `${screenWidth / 2 - canvasWidth / 2}px`;
+
+
     
     
     
@@ -838,6 +844,7 @@ addEventListener('keydown', ({key}) => {
     //(when dead)
     if(game.over) return
 
+
     switch(key){
         case 'ArrowDown':
             keys.arrowDown.pressed = true
@@ -858,6 +865,8 @@ addEventListener('keydown', ({key}) => {
 })
 
 addEventListener('keyup', ({key}) => {
+    
+
     switch(key){
         case 'ArrowDown':
             keys.arrowDown.pressed = false
@@ -893,6 +902,8 @@ function soundGo(soundPath){
     }
 
 }
+
+
 
 
 function updateScoreBoard(user){

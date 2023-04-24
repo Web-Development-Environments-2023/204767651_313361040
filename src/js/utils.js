@@ -81,9 +81,15 @@ const pageSwitch = (tab) => {
 function setSettings(){
     const timer = parseInt(document.getElementById('rangeVal').value)*1000;
     timerCount = timer;
-    pageSwitch("#game");
-    setupGame();
+    setTimeout(() => {
+        pageSwitch("#game");
+        setupGame();
+        backgroundSound.currentTime = 0;
+
+    }, 500);
+
     return false;
+
 }
 
 function resizeGameBoard(){
@@ -139,9 +145,10 @@ function stopSound(sound, resource=true) {
     }
 
     if(!mute){
+        $('#muteBtn').hide();
+        $('#playBtn').show();
         mute = true;
         sound.pause();
-        sound.currentTime = 0;
     }
         }
 
@@ -150,6 +157,8 @@ function playSound(sound, resource=true) {
         sound = backgroundSound;
     }
     if(mute){
+        $('#muteBtn').show();
+        $('#playBtn').hide();
         sound.play();
         mute = false;
     }
@@ -184,7 +193,11 @@ function updateLeaderBoardTable(scores, username){
 
 function backtoConfig() {
         // to do if game on
-        pageSwitch("#Configuration");
+        // swal("Do you want to start a new game? your score will be lost and you'll go back to settings page", "confirm", "warning");
+
+
+
+        // pageSwitch("#Configuration");
 
 
 }
@@ -199,5 +212,37 @@ Date.prototype.today = function () {
 Date.prototype.timeNow = function () {
      return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes() +":"+ ((this.getSeconds() < 10)?"0":"") + this.getSeconds();
 }
+
+
+document.querySelector('#playButton').addEventListener('click', function(e){
+    // var btn = this;
+    e.preventDefault();
+
+    if(game.active && !game.pause){
+    swal({
+        title: "Are you sure?",
+        text: "your score will be lost and you'll go back to settings page",
+        icon: "warning",
+        buttons: [
+          'No, back to game!',
+          'Yes, I am sure!'
+        ],
+        dangerMode: true,
+      }).then(function(isConfirm) {
+        if (isConfirm) {
+            pageSwitch("#Configuration");
+
+        } 
+        else {
+
+        }
+      })
+  }
+    else{
+        pageSwitch("#Configuration");
+    }
+});
+
+
 
 

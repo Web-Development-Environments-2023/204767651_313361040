@@ -44,7 +44,7 @@ section {
 	padding: 0.5%;
 	font-family: 'Roboto', sans-serif;
   background-image: linear-gradient(180deg,#ffffff, rgba(0, 166, 255, 0.95));
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px;
 
 	top:0;
 	left:0;
@@ -110,15 +110,14 @@ section {
 	border:none;
   margin-left:18px;
   width: fit-content;
+  transition: linear 0.3s;
 
 }
 
 .btn1:hover
 {
-	background-color: rgba(0, 0, 0, 0.8);
-  background-image: linear-gradient(180deg,#ffffff, rgba(110, 192, 210, 0.83));
-
-	transition: 0.5s;
+	background-color: rgba(124, 115, 115, 0.5);
+  color: rgba(52, 193, 236, 0.3);
 }
 
 h1
@@ -213,7 +212,7 @@ input {
   bottom: 0;
   position: fixed;
 	width: 100%;
-	height: 5%;
+	height: 4.8%;
 	opacity: 100%;
 	text-align: center;
 	font-size: 24px;
@@ -252,9 +251,11 @@ input {
   color: #4078c0;
 }
 
-i {
-  font-size: 24px;
+.footer-content i {
+  font-size: 25px;
 }
+
+
 
 
 

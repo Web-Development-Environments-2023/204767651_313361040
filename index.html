@@ -93,7 +93,7 @@
     <section id="login" align="center" hidden>
       <form id="login-section-form">
         <div id="login-form-title">
-          <h2>Log In</h2>
+          <h2>&nbsp;&nbsp;&nbsp;&nbsp;Log In</h2>
         </div>
         <div id="login-fill-in-div">
           <input class="inputRequest" type="text" placeholder="User Name" id="loginFormUserName" required/>
@@ -233,15 +233,23 @@
         <style>
           #preference-form-player img {
             margin-right: 5%;
+            padding: 2%;
+          }
+
+          .center-fit {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+            border-radius: 100px;
           }
         </style>
 
         <div id="preference-form-player">
           <br/>
           <tr>
-            <td width=33%><img src="Resource/images/spaceship1.png" alt="spaceship1" id="spaceShip1"   height="100" style="box-shadow: 0 0 20px rgba(0, 174, 255, 0.5);" onclick="changePlayer('./Resource/images/spaceship1.png', 1)"></td>
-            <td width=33%><img src="Resource/images/spaceship2.png" alt="starShip2" id="spaceShip2"  height="100" onclick="changePlayer('./Resource/images/spaceship2.png', 2)"></td>
-            <td width=33%><img src="Resource/images/spaceship3.png" alt="starShip3" id="spaceShip3" height="100" onclick="changePlayer('./Resource/images/spaceship3.png', 3)"></td>
+            <td width=33%><img src="Resource/images/spaceship1.png" class="center-fit" alt="spaceship1" id="spaceShip1"   height="100" style="box-shadow: 0 0 20px rgba(0, 174, 255, 0.5);" onclick="changePlayer('./Resource/images/spaceship1.png', 1)"></td>
+            <td width=33%><img src="Resource/images/spaceship2.png" class="center-fit" alt="starShip2" id="spaceShip2"  height="100" onclick="changePlayer('./Resource/images/spaceship2.png', 2)"></td>
+            <td width=33%><img src="Resource/images/spaceship3.png" class="center-fit" alt="starShip3" id="spaceShip3" height="100" onclick="changePlayer('./Resource/images/spaceship3.png', 3)"></td>
         </tr>
         </div>
       </div>
@@ -260,8 +268,8 @@
     <!-- Game Section-->
 <div id="game">
   <div id="gameContainer">
-  <img id="muteBtn" alt="mute" src="./Resource/images/mute.png"  height="50px" onclick="stopSound(null, false)">
-  <img id="playBtn" alt="mute" src="./Resource/images/play.png"  height="43px" onclick="playSound(null,false)">
+  <img id="muteBtn" alt="mute" src="./Resource/images/play.png" class="soundBtn"  height="4%" onclick="stopSound(null, false)">
+  <img id="playBtn" alt="mute" src="./Resource/images/mute.png"  class="soundBtn" height="4%" onclick="playSound(null,false)">
 
   <canvas id="canvasGame"></canvas>
 
