@@ -128,8 +128,8 @@ function resetGame(){
         lifeBar.src = liveBar_StringImage;
         const scale = canvas.width * 0.0006;
         c.drawImage(lifeBar, 0, 0, lifeBar.width, lifeBar.height, 10, 10, lifeBar.width*scale, lifeBar.height*scale);
-        //playSound(backgroundSound)
-        //backgroundSound.play();
+
+
         }
         catch(err){
             console.log(err);
@@ -318,6 +318,7 @@ class Invader{
             }
         }
         this.prize = prize
+        
     }
     
     draw(){
@@ -491,8 +492,8 @@ function updateTime(countTime, isStopwatch) {
             //text
             if(score < 100){
                 // Add a message at the center of the screen
-                stopSound(backgroundSound);
                 soundGo("./Resource/sounds/doBetter.mp3");
+                stopSound(backgroundSound);
                 var t = "You can do better!";
                 c.font = "120px Berlin Sans FB";
                 c.textAlign = "center";
@@ -503,8 +504,8 @@ function updateTime(countTime, isStopwatch) {
             }
             else{
                 // Add a message at the center of the screen
-                stopSound(backgroundSound);
                 soundGo("./Resource/sounds/winning.mp3");
+                stopSound(backgroundSound);
                 var t = "Winner!";
                 c.font = "100px Berlin Sans FB";
                 c.fillStylec = 'orange';
@@ -542,6 +543,8 @@ function animate(){
     const maxHightPlayer = canvas.height * 0.6 
     if(!game.active) return
 
+    if(!game.pause){requestAnimationFrame(animate) }
+
     if(startTime == null){
         startTime = Date.now();
         relateTime = startTime
@@ -552,10 +555,6 @@ function animate(){
         relateTime = Date.now()
         velocityIncreaseCountProj ++
     }
-
-    //requestAnimationFrame(animate)  
-
-
 
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
@@ -622,8 +621,8 @@ function animate(){
                     InvaderProjectiles.splice(index, 1)
                     if(game.lives > 0){
                         player.opacity = 0.3
-                        console.log('you lost one live')
-                        console.log(game.lives)
+                        // console.log('you lost one live')
+                        // console.log(game.lives)
                         setTimeout(() => {
                             player.opacity = 1
                             player.position.x = randomPlayerPosition;
@@ -641,8 +640,8 @@ function animate(){
 
                         setTimeout(() => { 
                             game.active = false;
-                            stopSound(backgroundSound);
                             soundGo("./Resource/sounds/loss.mp3");
+                            stopSound(backgroundSound);
                             var t = "You Lost!";
                             c.font = "100px Berlin Sans FB";
                             c.fillStylec = 'white';
@@ -711,8 +710,10 @@ function animate(){
 
                                 //remove invader & projectile
                             if(invaderFound && projectileFound){
+                                
                                 soundGo("./Resource/sounds/blaster.mp3");
-                                score += invader.prize
+                                score += invader.prize;
+                                invader.prize = 0;
                                 createParticles({
                                     object: invader, 
                                     color: 'green',
@@ -736,12 +737,11 @@ function animate(){
                                     grids.splice (gridIndex, 1)
                                     setTimeout(() => { 
                                         updateScoreBoard(logUser);
-                                        
-                                        stopSound(backgroundSound);
                                         soundGo("./Resource/sounds/winning.mp3");
+                                        stopSound(backgroundSound);
                                         game.active = false;
                                         game.pause = true;
-                                        showLeaderBoard(logUser);
+                                        // showLeaderBoard(logUser);
 
                                         //text
                                         var t = "Champion!";
@@ -752,7 +752,10 @@ function animate(){
                                         c.textBaseline = "middle";
                                         c.fillText(t, canvas.width/2, canvas.height/2);
 
-                                    },1000)   
+                                        showLeaderBoard(logUser); 
+
+                                    },1000) 
+                                     
                                 }
                             }
                         }, 0)
@@ -822,7 +825,7 @@ function animate(){
     //setInterval(updateStopwatch, 1000);
     setInterval(updateTime(timerCount,isStopwatch), 1000);
 
-    if(!game.pause){requestAnimationFrame(animate) }
+    // if(!game.pause){requestAnimationFrame(animate) }
 
 }
 
@@ -837,19 +840,15 @@ addEventListener('keydown', ({key}) => {
 
     switch(key){
         case 'ArrowDown':
-            console.log('down')
             keys.arrowDown.pressed = true
             break
         case 'ArrowUp':
-            //console.log('up')
             keys.arrowUp.pressed = true
             break
         case 'ArrowLeft':
-            //console.log('left')
             keys.arrowLeft.pressed = true
             break
         case 'ArrowRight':
-            // console.log('right')
             keys.arrowRight.pressed = true
             break
         case shotKey:
@@ -861,23 +860,18 @@ addEventListener('keydown', ({key}) => {
 addEventListener('keyup', ({key}) => {
     switch(key){
         case 'ArrowDown':
-            //console.log('down')
             keys.arrowDown.pressed = false
             break
         case 'ArrowUp':
-            //console.log('up')
             keys.arrowUp.pressed = false
             break
         case 'ArrowLeft':
-            //console.log('left')
             keys.arrowLeft.pressed = false
             break
         case 'ArrowRight':
-            //console.log('right')
             keys.arrowRight.pressed = false
             break
         case shotKey:
-            //console.log('space')
             keys.space.pressed = false
             break
         case 'p':

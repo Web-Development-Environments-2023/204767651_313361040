@@ -26,7 +26,8 @@ $(document).ready(function() {
 function welcome() {
     hide();
     // resizeGameBoard();
-    $("#welcome").show();
+    pageSwitch("#welcome");
+    // $("#welcome").show();
 }
 
 
