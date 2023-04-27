@@ -23,6 +23,9 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sigmar&display=swap" rel="stylesheet">
 
 
 
@@ -33,7 +36,7 @@
   <div id="menu"  align="center">
     <li><a  id="welcomeBtn" class="menu_Object" onclick="pageSwitch('#welcome')">Welcome</a></li>
     <li><a  id="playButton" class="menu_Object" onclick="backtoConfig()" style="display:none;">Play</a></li>
-    <li><a  class="menu_Object" onclick="pageSwitch('#register')">Register</a></li>
+    <li><a  class="menu_Object" id="registerBtn" onclick="pageSwitch('#register')">Register</a></li>
     <li><a  id="logoutBtn" class="menu_Object" onclick="replaceLogIn()" style="display:none;">Logout</a></li>
     <li><a  id="loginBtn" class="menu_Object" onclick="pageSwitch('#login')">Login</a></li>
     <li><a  class="menu_Object" id="aboutBtn">About</a></li>

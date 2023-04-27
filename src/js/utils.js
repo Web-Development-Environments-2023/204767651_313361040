@@ -20,6 +20,7 @@ users['p'] = {
 
 $(document).ready(function() {
     welcome();
+    addEventListenerAlerts();
 });
 
 
@@ -218,6 +219,8 @@ Date.prototype.timeNow = function () {
 }
 
 
+function addEventListenerAlerts(){
+
 document.querySelector('#playButton').addEventListener('click', function(e){
     // var btn = this;
     e.preventDefault();
@@ -246,7 +249,4 @@ document.querySelector('#playButton').addEventListener('click', function(e){
         pageSwitch("#Configuration");
     }
 });
-
-
-
-
+}
