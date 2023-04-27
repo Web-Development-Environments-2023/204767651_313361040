@@ -4,8 +4,10 @@
     font-weight: bold;
     -webkit-text-stroke: 1px rgb(8, 8, 8);
     font-size: 1.3vw;
-    font-style: revert;
-    font-family: "Berlin Sans FB";
+    /* font-style: revert;
+    font-family: "Berlin Sans FB"; */
+    font-family: 'Sigmar', cursive;
+
 }
 .range {
   width: 400px;
@@ -69,9 +71,11 @@
   color: rgb(199, 199, 199);
   text-decoration: none;
   font-weight: bold;
-  -webkit-text-stroke: 0.5px rgb(8, 8, 8);
-  font-style: revert;
-  font-family: "Berlin Sans FB";
+  -webkit-text-stroke: 0.35px rgb(8, 8, 8);
+  /* font-style: revert;
+  font-family: "Berlin Sans FB"; */
+  font-family: 'Sigmar', cursive;
+
   text-shadow: 0 0 5px #ffffff, 0 0 5px #fff, 0 0 5px #ffffff, 0 0 5px #ffffff;
 
 

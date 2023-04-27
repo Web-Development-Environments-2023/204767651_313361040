@@ -12,8 +12,9 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 
-
   }
+
+
   
   /* Modal Content */
   .modal-content {
@@ -32,9 +33,11 @@
     animation-name: animatetop;
     animation-duration: 0.4s;
     color: rgb(199, 199, 199);
-    -webkit-text-stroke: 1px rgb(8, 8, 8);
-    font-style: revert;
-    font-family: "Berlin Sans FB";
+    -webkit-text-stroke: 0.2px rgb(8, 8, 8);
+    /* font-style: revert; */
+    /* font-family: "Berlin Sans FB"; */
+    font-family: 'Sigmar', cursive;
+
     font-size: 1vw;
     border-radius: 10px;
     font-weight: bold;
@@ -78,10 +81,11 @@
 
     /* background-color: #bebebe; */
     color: rgb(199, 199, 199);
-    -webkit-text-stroke: 1px rgb(8, 8, 8);
+    -webkit-text-stroke: 0.3px rgb(8, 8, 8);
     font-weight: bold;
-    font-style: revert;
-    font-family: "Berlin Sans FB";
+    /* font-style: revert;
+    font-family: "Berlin Sans FB"; */
+    font-family: 'Sigmar', cursive;
     font-size: 1.8vw;
     border-radius: 10px 10px 0 0;
 
