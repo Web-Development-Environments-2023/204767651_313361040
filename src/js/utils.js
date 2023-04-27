@@ -49,6 +49,10 @@ const pageSwitch = (tab) => {
     $('#game').hide();
     $('#leaderboard').hide();
 
+
+
+
+
     
 
 

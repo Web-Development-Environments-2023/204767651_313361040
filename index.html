@@ -22,6 +22,11 @@
 
 
 
+    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+
+
+
+
 </head>
 <body>
   <!-- Menu NavBar-->
@@ -41,7 +46,8 @@
       <p><h2><font size=6>&emsp;&emsp;Ido Lourie - 204767651&emsp;Elad Shmulevich - 313361040</font></h2></p>
       <br/>
       <br/>
-        <img class="logo" src="https://images.launchbox-app.com/15f9cf98-65fb-4e3c-b94b-09e427b5f837.png" width="35%" height="35%">
+      <!-- "https://images.launchbox-app.com/15f9cf98-65fb-4e3c-b94b-09e427b5f837.png" -->
+        <img class="lazyload" src= "./Resource/spaceInvaders.png" alt="Space Invaders" width="35%">
 
     <br/>
     <br/>
@@ -90,7 +96,7 @@
     </section>
 
     <!-- Login Section-->
-    <section id="login" align="center" hidden>
+    <section id="login" align="center">
       <form id="login-section-form">
         <div id="login-form-title">
           <h2>&nbsp;&nbsp;&nbsp;&nbsp;Log In</h2>
@@ -185,7 +191,7 @@
 
 
     <!-- Configuration Section-->
-<section id="Configuration" align="center" >
+<section hidden id="Configuration" align="center" >
   <form id="configuration-form">
       <h2>
         Settings

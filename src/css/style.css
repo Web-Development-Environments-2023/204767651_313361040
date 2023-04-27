@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Berlin Sans FB';
+  src: url('berlin-sans-fb.woff2') format('woff2'),
+       url('berlin-sans-fb.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html
 {
 
@@ -77,7 +85,7 @@ section {
   font-size: 1.8vw;
   font-style: revert;
   font-family: "Berlin Sans FB";
-  text-shadow: 0 0 5px #ffffff, 0 0 5px #fff, 0 0 5px #ffffff, 0 0 5px #ffffff;
+  text-shadow: 0 0 4px #ffffff, 0 0 4px #fff, 0 0 4px #ffffff, 0 0 4px #ffffff;
 
 }
 
@@ -129,6 +137,7 @@ h1
   font-size: 1.2vw;
   font-style: revert;
   font-family: "Berlin Sans FB";
+  
   margin:auto
 
 }
@@ -138,11 +147,11 @@ h2
   color: rgb(199, 199, 199);
   text-decoration: none;
   font-weight: bold;
-  -webkit-text-stroke: 1px rgb(8, 8, 8);
+  -webkit-text-stroke: 0.75px rgb(8, 8, 8);
   font-size: 2.5vw;
   font-style: revert;
   font-family: "Berlin Sans FB";
-  text-shadow: 0 0 5px #ffffff, 0 0 5px #fff, 0 0 5px #ffffff, 0 0 5px #ffffff;
+  text-shadow: 0 0 3px #ffffff, 0 0 3.5px #fff, 0 0 3px #ffffff, 0 0 3.5px #ffffff;
 
 }
 
